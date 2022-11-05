@@ -16,7 +16,7 @@ export default class Administrador extends Component {
             </div>
             <div className="admin-toolbar">
                 <ul>
-                    <li>Alumnos</li>
+                    <li><a>Alumnos</a></li>
                     <li>Docentes</li>
                     <li>Carreras</li>
                     <li>Personal Escolar</li>
