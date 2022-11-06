@@ -40,10 +40,10 @@
     height: 8vh;
     background: #1D3A69;
     border-radius: 15px;
-    margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
     box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    font-size: 16px;
 }
 
 .admin-toolbar ul {
@@ -58,20 +58,130 @@
     color: white;
 }
 
+.admin-toolbar ul li a {
+    background: #1D3A69;
+    color: white;
+    text-decoration: none;
+}
+
+.admin-toolbar ul li a:hover {
+    text-decoration: underline;
+}
+
 .admin-content {
-    height: 40vh;
+    height: 60vh;
     margin: 20px;
     display: flex;
+    background-color: transparent;
 }
 
 .admin-content .table-content-admin {
     height: 100%;
-    width: 60%;
+    width: 70%;
     background-color: #FFFFFF;
+    border-radius: 20px;
+    margin-right: 10px;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    padding: 10px;
+    font-size: 14px;
+}
+
+.main-container .table-content-admin table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0px auto;
+}
+
+.main-container .table-content-admin table thead {
+    position: sticky;
+    top: 0;
+}
+
+.main-container .table-content-admin table tbody {
+    overflow: auto;
+    font-size: 95%;
+}
+
+.main-container .table-content-admin table td, th {
+    padding: 5px;   
+    text-align: center;
+    background-color: white;
+}
+
+.main-container .edit-content-admin {
+    width: 30%;
+    height: 100%;
+    background-color: white;
     border-radius: 20px;
     box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
 }
 
-.main-container .table-content-admin table, td, tr {
+.main-container .edit-content-admin form {
+    position: relative;
+    width: 100%;
+    height: 100%;
     background-color: transparent;
+    margin-top: 20px;
+}
+
+.main-container .edit-content-admin form label {
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    margin-left: 20px;
+}
+
+.main-container .edit-content-admin form .input-text-container {
+    margin: 20px;
+    overflow-y: scroll;
+    background-color: transparent;
+}
+
+.main-container .edit-content-admin form .input-text-container input {
+    width: 90%;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #1D3A69;
+    border-radius: 20px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.main-container .edit-content-admin form .button-controller-container {
+    width: 100%;
+    background-color:white;
+    position: absolute;
+    bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.main-container .edit-content-admin form .button-controller-container .input-button {
+    width: 85%;
+    height: 40px;
+    border-radius: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+}
+
+.main-container .edit-content-admin form .button-controller-container .delete-btn {
+    border: none;
+    color: #FF5A5A;
+}
+
+.main-container .edit-content-admin form .button-controller-container .edit-btn {
+    border: 2px solid #1D3A69;
+    color: #1D3A69;
+}
+
+.main-container .edit-content-admin form .button-controller-container .add-btn {
+    background-color: #1D3A69;
+    border: 2px solid #1D3A69;
+    color: white;
 }
