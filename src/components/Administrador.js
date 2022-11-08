@@ -1,6 +1,7 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CompCreateAlumno from "../api/Alumnos/CreateAlumnos";
+import CompEditAlumno from "../api/Alumnos/EditAlumnos";
 import CompShowAlumnos from "../api/Alumnos/ShowAlumnos";
 import logoTecNM from '../images/Logo-TecNM.png';
 import "../styles/Administrador.css";
@@ -33,8 +34,12 @@ export default class Administrador extends Component {
                     <Routes>
                         <Route path="/alumnos" element={<CompShowAlumnos />} />
                         <Route path="/agregarAlumno" element={<CompCreateAlumno/>}></Route>
+                        <Route path="/editarAlumno/:num_control" element={<CompEditAlumno/>}></Route>
                     </Routes>
                 </BrowserRouter>
+                <div className="footer">
+                    <p>INSTITUTO TECNOLÓGICO DE HERMOSILLO - 2022</p>
+                </div>
             </div>
         )
     }
