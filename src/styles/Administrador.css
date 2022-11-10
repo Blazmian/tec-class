@@ -16,7 +16,7 @@
     width: 100%;
     position: relative;
     display: flex;
-    padding: 2%;
+    padding: 1%;
 }
 
 .admin-header img {
@@ -24,18 +24,25 @@
 }
 
 .admin-header button {
+    height: 70%;
+    position: relative;
+    top: 15%;
     margin-left: auto;
-    margin-right: 5%;
-    text-align: center;
+    margin-right: 3%;
     font-size: 24px;
     font-weight: bold;
     color: #FF5A5A;
+    border-radius: 60px;
     border: none;
+    cursor: pointer;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 .admin-header button:hover {
-    cursor: pointer;
-    color: #fa3636;
+    box-shadow: 0 0 40px 40px #FF5A5A inset;
+    color: #fff;
+    outline: 0;
 }
 
 /* DISEÑO PARA EL TOOLBAR */
@@ -70,6 +77,10 @@
 }
 
 .admin-toolbar ul li a:hover {
+    text-decoration: underline;
+}
+
+.admin-toolbar ul li .active {
     text-decoration: underline;
 }
 
@@ -225,6 +236,7 @@
 
 .main-container .edit-content-admin form .button-controller-container .edit-btn {
     border: 2px solid #1D3A69;
+    background-color: white;
     color: #1D3A69;
     -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
@@ -281,6 +293,24 @@
     background-color: transparent;
 }
 
+.main-container .create-container form .info-container {
+    background-color: transparent;
+    width: 100%;
+}
+
+.main-container .create-container form .info-container input[type=text] {
+    width: 50%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    border-bottom: 2px solid rgb(59, 59, 59);
+    padding-left: 5px;
+    display: block;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
 .main-container .create-container form label {
     background-color: transparent;
     width: 100%;
@@ -289,7 +319,7 @@
     font-size: 12px;
 }
 
-.main-container .create-container form input[type=text], input[type=date] {
+.main-container .create-container form input[type=text], input[type=date], input[type=password] {
     width: 50%;
     background-color: transparent;
     outline: none;
@@ -301,7 +331,7 @@
     margin-top: 15px;
 }
 
-.main-container .create-container form input[type=text]:focus, input[type=date]:focus {
+.main-container .create-container form input[type=text]:focus, input[type=date]:focus, input[type=password]:focus {
     outline: none;
     transition: 0.7s;
     border-bottom: 2px solid #27ad8a;
@@ -346,7 +376,7 @@
     -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     position: absolute;
-    right: 50px;
+    right: 70px;
 }
 
 .main-container .create-container .button-controller .create-btn:hover {

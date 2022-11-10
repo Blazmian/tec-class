@@ -4,6 +4,7 @@ import React from 'react';
 import logoITH from './images/ITH.png';
 import FormIS from './components/FormIS.js';*/
 import Administrador from './components/Administrador';
+import '@fontsource/montserrat'; 
 
 function App() {
 return (
