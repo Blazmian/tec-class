@@ -96,7 +96,7 @@
   align-items: center;
 }
 
-.contenedor-login .form-login input[type='text'], input[type='password'] {
+.contenedor-login .form-login .login-input {
   margin-bottom: 30px;
   width: 461px;
   height: 68px;
