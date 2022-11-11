@@ -1,10 +1,20 @@
 import React from 'react';
-//import './App.css';
-/*import logoTecNM from './images/Logo-TecNM.png';
+import './App.css';
+import logoTecNM from './images/Logo-TecNM.png';
 import logoITH from './images/ITH.png';
-import FormIS from './components/FormIS.js';*/
-import Administrador from './components/Administrador';
+import FormIS from './components/FormIS.js';
 import '@fontsource/montserrat'; 
+import 'animate.css';
+import Administrador from './components/Administrador';
+
+// Se dee de registrar los datos del cliente
+/**
+ * Se debe de calcular el consumo energetico
+ * s debe calcular el consumo total
+ * se debe de poder registra el pago
+ * se debe obtener reporte al cliente por su consumo
+ * reporte de los cliente que tuvieron un mayor consumo
+ */
 
 function App() {
 return (
@@ -31,7 +41,7 @@ return (
         </div>
         <h1 className='nm-institucion'>INSTITUTO TECNOLÓGICO DE HERMOSILLO - 2022</h1>
     </div>*/
-    <Administrador />
+    <Administrador/>
   );
 }
 

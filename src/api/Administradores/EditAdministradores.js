@@ -1,16 +1,17 @@
 import axios from "axios";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
-import Alerts from "../../components/Alerts";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 const URI = 'http://localhost:8000/alumnos/'
 
-const CompCreateAlumno = () => {
-    const [num_control, setNumControl] = useState('')
+const CompEditAlumno = () => {
+
+    const {num_control} = useParams()
     const [nombres, setNombres] = useState('')
     const [primer_ape, setPrimerApellido] = useState('')
     const [segundo_ape, setSegundoApellido] = useState('')
     const [fecha_nacimiento, setFechaNac] = useState('')
+    const [semestre, setSemestre] = useState('')
     const [telefono, setTelefono] = useState('')
     const [domicilio, setDomicilio] = useState('')
     const [nip, setNip] = useState('')
@@ -18,27 +19,50 @@ const CompCreateAlumno = () => {
     const [genero, setGenero] = useState('Masculino')
     const navigate = useNavigate()
 
-    const store = async (e) => {
+    const update = async (e) => {
         e.preventDefault()
-        await axios.post(URI, { no_control_alumno: getRandomInt(10000000, 100000000), nombre_alumno: nombres, primer_ape: primer_ape, 
-            segundo_ape: segundo_ape, fecha_nacimiento: fecha_nacimiento, semestre: 1, 
-            telefono: telefono, domicilio: domicilio, nip: getRandomInt(1000, 10000), correo: correo, genero: genero }) 
+        await axios.put(URI + num_control, {
+            no_control_alumno: num_control,
+            nombre_alumno: nombres, 
+            primer_ape: primer_ape, 
+            segundo_ape: segundo_ape, 
+            fecha_nacimiento: fecha_nacimiento, 
+            semestre: semestre, 
+            telefono: telefono, 
+            domicilio: domicilio, 
+            nip: nip, 
+            correo: correo, 
+            genero: genero
+        })
+        navigate('/alumnos')
+    }
+
+    useEffect( () => {
+        getAlumnoById()
+    }, [])
+
+    const getAlumnoById = async () => {
+        const res = await axios.get(URI + num_control)
+        setNombres(res.data.nombre_alumno)
+        setPrimerApellido(res.data.primer_ape)
+        setSegundoApellido(res.data.segundo_ape)
+        setFechaNac(res.data.fecha_nacimiento)
+        setSemestre(res.data.semestre)
+        setTelefono(res.data.telefono)
+        setDomicilio(res.data.domicilio)
+        setNip(res.data.nip)
+        setCorreo(res.data.correo)
+        setGenero(res.data.genero)
     }
 
     const setGender = e => {
         setGenero(e.target.value);
     }
 
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) + min);
-    }
-
     return (
         <div className="create-container">
-            <h1>Agregar Alumno</h1>
-            <form onSubmit={ store }>
+            <h1>Editar Alumno</h1>
+            <form onSubmit={ update }>
                 <div className="personal-info-container">
                     <label>Información Personal</label>
                     <input value={nombres} onChange={ (e) => setNombres(e.target.value)} type="text" placeholder="Nombres del Alumno"></input>
@@ -73,11 +97,11 @@ const CompCreateAlumno = () => {
                 </div>
                 <div className="button-controller">
                     <Link to={"/alumnos"}><button className="return-btn">⇽ Volver</button></Link>
-                    <button className="create-btn" type="submit">Agregar</button>
+                    <button className="create-btn" type="submit">Editar</button>
                 </div>
             </form>
         </div>
     )
 }
 
-export default CompCreateAlumno
+export default CompEditAlumno

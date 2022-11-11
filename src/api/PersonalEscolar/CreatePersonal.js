@@ -42,7 +42,7 @@ const CompCreatePersonal = () => {
             <form onSubmit={ store }>
                 <div className="personal-info-container">
                     <label>Información Personal</label>
-                    <input value={nombres} onChange={ (e) => setNombres(e.target.value)} type="text" placeholder="Nombres del Alumno"></input>
+                    <input value={nombres} onChange={ (e) => setNombres(e.target.value)} type="text" placeholder="Nombres"></input>
                     <input value={primer_ape} onChange={ (e) => setPrimerApellido(e.target.value)} type="text" placeholder="Primer Apellido"></input>
                     <input value={segundo_ape} onChange={ (e) => setSegundoApellido(e.target.value)} type="text" placeholder="Segundo Apellido"></input>
                     <input value={fecha_nacimiento} onChange={ (e) => setFechaNac(e.target.value)} type="date"></input>
@@ -68,8 +68,8 @@ const CompCreatePersonal = () => {
                 </div>
                 <div className="contact-info-container">
                     <label>Información de Contacto</label>
-                    <input value={telefono} onChange={ (e) => setTelefono(e.target.value)} type="text" placeholder="Telefono del Alumno"></input>
-                    <input value={domicilio} onChange={ (e) => setDomicilio(e.target.value)} type="text" placeholder="Domicilio del Alumno"></input>
+                    <input value={telefono} onChange={ (e) => setTelefono(e.target.value)} type="text" placeholder="Telefono del Personal"></input>
+                    <input value={domicilio} onChange={ (e) => setDomicilio(e.target.value)} type="text" placeholder="Domicilio del Personal"></input>
                     <input value={correo} onChange={ (e) => setCorreo(e.target.value)} type="text" placeholder="Correo"></input>
                     <input value={contrasena} onChange={ (e) => setContrasena(e.target.value)} type="password" placeholder="Contraseña"></input>
                     <input type="password" placeholder="Confirmar Contraseña"></input>

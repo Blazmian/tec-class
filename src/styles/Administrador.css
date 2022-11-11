@@ -132,6 +132,7 @@
 .main-container .table-content-admin table thead {
     position: sticky;
     top: 0;
+    font-size: 14px;
 }
 
 .main-container .table-content-admin table tbody {
@@ -278,6 +279,7 @@
 }
 
 .main-container .create-container form {
+    height: 100%;
     margin-left: 20px;
     background-color: transparent;
     display: flex;
