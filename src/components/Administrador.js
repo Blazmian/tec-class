@@ -15,6 +15,7 @@ import CompCreatePersonal from "../api/PersonalEscolar/CreatePersonal";
 import CompEditPersonal from "../api/PersonalEscolar/EditPersonal";
 import CompShowPersonal from "../api/PersonalEscolar/ShowPersonal";
 import logoTecNM from '../images/Logo-TecNM.png';
+import { logout } from "../services/Authentication";
 import "../styles/Administrador.css";
 import Alerts from "./Alerts";
 
@@ -29,7 +30,7 @@ export default class Administrador extends Component {
                             className='Logo-Tecnm'
                             alt='Logo de Tecnológico Nacional de México'
                         />
-                        <button>Cerrar Sesión</button>
+                        <button /*Se debe preguntar si se desea cerrar sesion*/ onClick={ e => logout()}>Cerrar Sesión</button>
                     </div>
                     <div className="admin-toolbar">
                         <ul>
