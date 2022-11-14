@@ -16,8 +16,7 @@ function FormIS() {
             const res = await axios.post(URI, { usuario: user, pass: pass })
             localStorage.setItem('token', res.data.token)
             console.log(localStorage.getItem('token'))
-            //useNavigate('/alumnos')
-            //<Administrador />
+            window.location.reload()
         } else {
             console.log('Error: debes introducir los datos')
         }

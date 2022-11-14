@@ -49,7 +49,7 @@ const Authentication = () => {
 export default Authentication
 
 export const logout = (e)  => {
-    console.log('cerrando sesion...')
     localStorage.removeItem('token')
+    window.location.href = '/'
     //Moverlo a la pantalla principal con useNavigate('/')
 }
