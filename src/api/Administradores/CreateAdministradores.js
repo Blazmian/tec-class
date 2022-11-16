@@ -66,7 +66,7 @@ const CompCreateAdministrador = () => {
                     </table>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/administradores"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/administradores"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit" onChange={(e) => setIdPersonal(e.target.value)}>Agregar</button>
                 </div>
             </form>

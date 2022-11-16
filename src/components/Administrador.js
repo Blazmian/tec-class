@@ -15,6 +15,7 @@ import CompCreatePersonal from "../api/PersonalEscolar/CreatePersonal";
 import CompEditPersonal from "../api/PersonalEscolar/EditPersonal";
 import CompShowPersonal from "../api/PersonalEscolar/ShowPersonal";
 import logoTecNM from '../images/Logo-TecNM.png';
+import { logout } from "../services/Authentication";
 import "../styles/Administrador.css";
 import Alerts from "./Alerts";
 
@@ -22,25 +23,24 @@ export default class Administrador extends Component {
     render() {
         return (
             <div className="main-container">
-                <BrowserRouter>
                     <div className="admin-header">
                         <img
                             src={logoTecNM}
                             className='Logo-Tecnm'
                             alt='Logo de Tecnológico Nacional de México'
                         />
-                        <button>Cerrar Sesión</button>
+                        <button /*Se debe preguntar si se desea cerrar sesion*/ onClick={ e => logout()}>Cerrar Sesión</button>
                     </div>
                     <div className="admin-toolbar">
                         <ul>
-                            <li><NavLink to={"/alumnos"} className={({ isActive }) => isActive ? 'active' : ""}>Alumnos</NavLink></li>
-                            <li><NavLink to={"/docentes"}>Docentes</NavLink></li>
-                            <li><NavLink to={"/carreras"}>Carreras</NavLink></li>
-                            <li><NavLink to={"/personal"}>Personal Escolar</NavLink></li>
-                            <li><NavLink to={"/materias"}>Materias</NavLink></li>
-                            <li><NavLink to={"/grupos"}>Grupos</NavLink></li>
-                            <li><NavLink to={"/clases"}>Clases</NavLink></li>
-                            <li><NavLink to={"/administradores"}>Administrador</NavLink></li>
+                            <li><NavLink to={"/admin/alumnos"} className={({ isActive }) => isActive ? 'active' : ""}>Alumnos</NavLink></li>
+                            <li><NavLink to={"/admin/docentes"}>Docentes</NavLink></li>
+                            <li><NavLink to={"/admin/carreras"}>Carreras</NavLink></li>
+                            <li><NavLink to={"/admin/personal"}>Personal Escolar</NavLink></li>
+                            <li><NavLink to={"/admin/materias"}>Materias</NavLink></li>
+                            <li><NavLink to={"/admin/grupos"}>Grupos</NavLink></li>
+                            <li><NavLink to={"/admin/clases"}>Clases</NavLink></li>
+                            <li><NavLink to={"/admin/administradores"}>Administrador</NavLink></li>
                         </ul>
                     </div>
                     <Routes>
@@ -63,7 +63,6 @@ export default class Administrador extends Component {
                         <Route path="/administradores" element={<CompShowAdministradores />}></Route>
                         <Route path="/agregarAdministrador" element={<CompCreateAdministrador />}></Route>
                     </Routes>
-                </BrowserRouter>
                 <div className="footer">
                     <Alerts type={"error"} message={"Usuario creado correctamente" }></Alerts>
                     <p>INSTITUTO TECNOLÓGICO DE HERMOSILLO - 2022</p>
