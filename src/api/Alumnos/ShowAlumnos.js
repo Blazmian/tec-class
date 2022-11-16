@@ -77,8 +77,8 @@ const CompShowAlumnos = () => {
                     </div>
                     <div className="button-controller-container">
                         <input onClick={ () => { deleteAlumno(infoAlumno.no_control_alumno) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/editarAlumno/" + infoAlumno.no_control_alumno}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
-                        <Link to={"/agregarAlumno"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
+                        <Link to={"/admin/editarAlumno/" + infoAlumno.no_control_alumno}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <Link to={"/admin/agregarAlumno"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>
             </div>

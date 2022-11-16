@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FormIS from './components/FormIS'
 import '@fontsource/montserrat';
 import 'animate.css';
 import Administrador from './components/Administrador';
 import Authentication from './services/Authentication';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // Se dee de registrar los datos del cliente
 /**
@@ -14,12 +15,17 @@ import Authentication from './services/Authentication';
  * reporte de los cliente que tuvieron un mayor consumo
  */
 
-function App() {
-    const res = Authentication();
-    if (res != null) {
-        return <Administrador/>
-    } else {
-        return <FormIS />
+class App extends Component {
+    render() {
+        return (
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Authentication />}></Route>
+                    <Route path='/admin/*' element={<Administrador />} />
+                    <Route path='/login' element={<FormIS />} ></Route>
+                </Routes>
+            </BrowserRouter >
+        )
     }
 }
 

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 const URI = 'http://localhost:8000/auth/'
 var authInformation = null;
@@ -7,49 +8,50 @@ var authInformation = null;
 const Authentication = () => {
     const [user, setUser] = useState('')
     const [id_user, setId] = useState('')
+    const navigate = useNavigate()
+    useEffect(() => {
+        getAuthentication()
+    }, [])
 
     authInformation = localStorage.getItem('token')
 
-    if (authInformation != null) {
-        getAuthentication()
-    } else {
-        return null
-    }
+    const getAuthentication = async () => {
+        if (authInformation != null) {
+            const res = await axios.post(URI, { token: authInformation })
+            switch (res.status) {
+                case 200:
+                    setUser(res.data.usuario)
+                    setId(res.data.id_personal)
+                    break;
 
-    if (user){
-        return user
-    } else {
-        return null
-    }
+                case 401:
+                    console.log('Error: No se pudo autenticar')
+                    break;
 
-    async function getAuthentication () {
-        const res = await axios.post(URI, {token: authInformation})
-        switch (res.status) {
-            case 200:
-                setUser(res.data.usuario)
-                setId(res.data.id_personal)
-                break;
-    
-            case 401:
-                console.log('Error: No se pudo autenticar')
-                break;
-    
-            case 404:
-                console.log('Error: Usuario no encontrado')
-                break;
-    
-            default:
-                console.log('Error inesperado')
-                break;
+                case 404:
+                    console.log('Error: Usuario no encontrado')
+                    break;
+
+                default:
+                    console.log('Error inesperado')
+                    setUser(null)
+                    break;
+            }
+            if (res.status == 200) {
+                navigate('/admin')
+            } else {
+                navigate('/login')
+            }
+        } else {
+            navigate('/login')
         }
-        console.log(res.data)
     }
 }
 
 export default Authentication
 
-export const logout = (e)  => {
+export const logout = (e) => {
     localStorage.removeItem('token')
-    window.location.href = '/'
+    window.location.href = '/login'
     //Moverlo a la pantalla principal con useNavigate('/')
 }

@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import logoTecNM from '../images/Logo-TecNM.png';
 import logoITH from '../images/ITH.png';
 import '../styles/FormIS.css';
+import { useNavigate } from "react-router-dom";
 
 const URI = 'http://localhost:8000/login/'
 
 function FormIS() {
     const [user, setUser] = useState('')
     const [pass, setPass] = useState('')
+    const navigate = useNavigate();
 
     const login = async (e) => {
         e.preventDefault()
@@ -16,7 +18,7 @@ function FormIS() {
             const res = await axios.post(URI, { usuario: user, pass: pass })
             localStorage.setItem('token', res.data.token)
             console.log(localStorage.getItem('token'))
-            window.location.reload()
+            navigate('/')
         } else {
             console.log('Error: debes introducir los datos')
         }
