@@ -4,6 +4,7 @@ import logoTecNM from '../images/Logo-TecNM.png';
 import logoITH from '../images/ITH.png';
 import '../styles/FormIS.css';
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const URI = 'http://localhost:8000/login/'
 
@@ -15,12 +16,45 @@ function FormIS() {
     const login = async (e) => {
         e.preventDefault()
         if (user.length > 0 && pass.length > 0) {
-            const res = await axios.post(URI, { usuario: user, pass: pass })
-            localStorage.setItem('token', res.data.token)
-            console.log(localStorage.getItem('token'))
-            navigate('/')
+            const res = await axios.post(URI, { usuario: user, pass: pass }).then(function(response) {
+                toast.success('Sesión iniciada con exito', {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                localStorage.setItem('token', response.data.token)     
+                navigate('/')
+            }).catch(function (error) {
+                if (error.toJSON().status == 400 || error.toJSON().status == 404) {
+                    toast.error('Usuario o contraseña incorrectos', {
+                        position: "bottom-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            }) 
         } else {
             console.log('Error: debes introducir los datos')
+            toast.error('Error: Debes introducir los datos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     }
 
