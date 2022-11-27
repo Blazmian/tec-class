@@ -31,18 +31,19 @@ export default class Administrador extends Component {
                         />
                         <button /*Se debe preguntar si se desea cerrar sesion*/ onClick={ e => logout()}>Cerrar Sesión</button>
                     </div>
-                    <div className="admin-toolbar">
-                        <ul>
-                            <li><NavLink to={"/admin/alumnos"} className={({ isActive }) => isActive ? 'active' : ""}>Alumnos</NavLink></li>
-                            <li><NavLink to={"/admin/docentes"}>Docentes</NavLink></li>
-                            <li><NavLink to={"/admin/carreras"}>Carreras</NavLink></li>
-                            <li><NavLink to={"/admin/personal"}>Personal Escolar</NavLink></li>
-                            <li><NavLink to={"/admin/materias"}>Materias</NavLink></li>
-                            <li><NavLink to={"/admin/grupos"}>Grupos</NavLink></li>
-                            <li><NavLink to={"/admin/clases"}>Clases</NavLink></li>
-                            <li><NavLink to={"/admin/administradores"}>Administrador</NavLink></li>
-                        </ul>
-                    </div>
+                    <div className="main-content">
+                        
+                        <div className="admin-sidebar">
+                            <ul>
+                                <li><NavLink to={"/admin/usuarios"} className={({ isActive }) => isActive ? 'active' : ""}>Usuarios</NavLink></li>
+                                <li><NavLink to={"/admin/personal_escolar"}>Personal Escolar</NavLink></li>
+                                <li><NavLink to={"/admin/informacion_escolar"}>Informacion Escolar</NavLink></li>
+                                <li><NavLink to={"/admin/otros"}>Otros</NavLink></li>
+                            </ul>
+                        </div>
+                        <div className="main-content-structure">
+                    
+                    
                     <Routes>
                         <Route path="/alumnos" element={<CompShowAlumnos />} />
                         <Route path="/agregarAlumno" element={<CompCreateAlumno />}></Route>
@@ -63,11 +64,28 @@ export default class Administrador extends Component {
                         <Route path="/administradores" element={<CompShowAdministradores />}></Route>
                         <Route path="/agregarAdministrador" element={<CompCreateAdministrador />}></Route>
                     </Routes>
+                    </div>
+                    </div>
                 <div className="footer">
                     <Alerts type={"error"} message={"Usuario creado correctamente" }></Alerts>
                     <p>INSTITUTO TECNOLÓGICO DE HERMOSILLO - 2022</p>
                 </div>
+                
             </div>
         )
     }
 }
+/** 
+ * <div className="admin-toolbar">
+                        <ul>
+                            <li><NavLink to={"/admin/alumnos"} className={({ isActive }) => isActive ? 'active' : ""}>Alumnos</NavLink></li>
+                            <li><NavLink to={"/admin/docentes"}>Docentes</NavLink></li>
+                            <li><NavLink to={"/admin/carreras"}>Carreras</NavLink></li>
+                            <li><NavLink to={"/admin/personal"}>Personal Escolar</NavLink></li>
+                            <li><NavLink to={"/admin/materias"}>Materias</NavLink></li>
+                            <li><NavLink to={"/admin/grupos"}>Grupos</NavLink></li>
+                            <li><NavLink to={"/admin/clases"}>Clases</NavLink></li>
+                            <li><NavLink to={"/admin/administradores"}>Administrador</NavLink></li>
+                        </ul>
+                    </div>
+ */

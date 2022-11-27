@@ -34,6 +34,15 @@ const CompShowAdministradores = () => {
 
     return (
         <div className="admin-content">
+            <div className="main-content-structure">
+            <div className="admin-toolbar">
+                        <ul>
+                            <li><a>PRUEBA</a></li>
+                            
+                        </ul>
+            </div>
+            <br></br>
+            <div className="main-content">
             <div className="table-content-admin">
                 <table>
                     <thead>
@@ -73,6 +82,8 @@ const CompShowAdministradores = () => {
                         <Link to={"/agregarAdministrador"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>
+            </div>
+            </div>
             </div>
         </div>
     )
