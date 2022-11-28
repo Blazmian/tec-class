@@ -1,0 +1,411 @@
+* {
+    background-color: #f2f2f2;
+    font-family: 'Montserrat';
+    overflow: hidden;
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+}
+
+/* DISEÑO PARA HEADER */
+.admin-header {
+    height: 10vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    padding: 1%;
+}
+
+.admin-header img {
+    /*height: 100%;*/
+}
+
+.admin-header button {
+    height: 50%;
+    position: relative;
+    top: 25%;
+    margin-left: auto;
+    margin-right: 3%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF5A5A;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.admin-header button:hover {
+    box-shadow: 0 0 40px 40px #FF5A5A inset;
+    color: #fff;
+    outline: 0;
+}
+
+/* DISEÑO PARA EL TOOLBAR */
+
+.admin-toolbar {
+    /*height: 8vh;*/
+    height: auto;
+    background: #1D3A69;
+    border-radius: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    font-size: 16px;
+}
+
+.admin-toolbar ul {
+    padding: 0px;
+    background: #1D3A69;
+    display: flex;
+    justify-content: space-around;
+}
+
+.admin-toolbar ul li {
+    background: #1D3A69;
+    color: white;
+}
+
+.admin-toolbar ul li a {
+    background: #1D3A69;
+    color: white;
+    text-decoration: none;
+}
+
+.admin-toolbar ul li a:hover {
+    text-decoration: underline;
+}
+
+.admin-toolbar ul li .active {
+    text-decoration: underline;
+}
+
+/* DISEÑO PARA EL CONTENIDO NORMAL DE UNA PANTALLA */
+
+.admin-content {
+    height: 60vh;
+    margin: 15px;
+    display: flex;    
+    background-color: transparent;
+}
+
+.admin-content .table-content-admin {
+    width: 68%;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    margin-right: 20px;
+    padding: 5px;
+    font-size: 14px;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar {  
+    width:8px;
+    height:8px;
+    -webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece {
+    background-color:transparent;
+}
+
+::-webkit-scrollbar-thumb {  
+    background-color: rgba(053, 057, 071, 0.3);
+    width: 6px;
+    height: 6px;
+    -webkit-border-radius:4px;
+}
+
+.main-container .table-content-admin table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0px auto;
+}
+
+.main-container .table-content-admin table thead {
+    position: sticky;
+    top: 0;
+    font-size: 14px;
+}
+
+.main-container .table-content-admin table tbody {
+    overflow: scroll;
+    background-color: transparent;
+    overflow-x: auto;
+    font-size: 95%;
+}
+
+.main-container .table-content-admin table tbody tr:hover {
+    color: #0140a5;
+    cursor: pointer;
+    -webkit-transition: all 0.5s linear;
+}
+
+.main-container .table-content-admin table td, th {
+    padding: 5px;   
+    text-align: center;
+    background-color: white;
+}
+
+.main-container .edit-content-admin {
+    width: 30%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+}
+
+.main-container .edit-content-admin form {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    padding-top: 20px;
+}
+
+.main-container .edit-content-admin form label {
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    margin-left: 20px;
+}
+
+.main-container .edit-content-admin form .input-text-container  {
+    margin: 20px;
+    overflow: scroll;
+    overflow-x: auto;
+    /*height: 200px;*/
+    height: 40%;
+    background-color: transparent;
+}
+
+.main-container .edit-content-admin form .input-text-container input {
+    width: 90%;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #1D3A69;
+    border-radius: 20px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    outline: none;
+    pointer-events: none;
+}
+
+.main-container .edit-content-admin form .button-controller-container {
+    width: 100%;
+    height: 50%;
+    background-color:white;
+    position: absolute;
+    bottom: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.main-container .edit-content-admin form .button-controller-container .input-button {
+    width: 85%;
+    height: 40px;
+    border-radius: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.main-container .edit-content-admin form .button-controller-container .delete-btn {
+    border: none;
+    color: #FF5A5A;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.main-container .edit-content-admin form .button-controller-container .delete-btn:hover {
+    box-shadow: 0 0 40px 40px #FF5A5A inset;
+    color: #fff;
+    outline: 0;
+}
+
+.main-container .edit-content-admin form .button-controller-container .edit-btn {
+    border: 2px solid #1D3A69;
+    background-color: white;
+    color: #1D3A69;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.main-container .edit-content-admin form .button-controller-container .edit-btn:hover {
+    box-shadow: 0 0 40px 40px #1D3A69 inset;
+    color: #fff;
+    outline: 0;
+}
+
+.main-container .edit-content-admin form .button-controller-container .add-btn {
+    background-color: rgb(29, 58, 105);
+    color: white;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.main-container .edit-content-admin form .button-controller-container .add-btn:hover {
+    box-shadow: 0 0 40px 40px #000 inset;
+    outline: 0;
+}
+
+/* AGREGAR ELEMENTOS */
+
+.main-container .create-container {
+    height: 57vh;
+    margin: 15px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.158);
+    position: relative;
+}
+
+.main-container .create-container h1 {
+    background-color: transparent;
+    margin-left: 20px;
+    font-size: 24px;
+}
+
+.main-container .create-container form {
+    height: 100%;
+    margin-left: 20px;
+    background-color: transparent;
+    display: flex;
+}
+
+.main-container .create-container form .personal-info-container {
+    width: 50%;
+    background-color: transparent;
+}
+
+.main-container .create-container form .contact-info-container {
+    width: 50%;
+    background-color: transparent;
+}
+
+.main-container .create-container form .info-container {
+    background-color: transparent;
+    width: 100%;
+}
+
+.main-container .create-container form .info-container input[type=text] {
+    width: 50%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    border-bottom: 2px solid rgb(59, 59, 59);
+    padding-left: 5px;
+    display: block;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.main-container .create-container form label {
+    background-color: transparent;
+    width: 100%;
+    color: rgb(59, 59, 59);
+    display: block;
+    font-size: 12px;
+}
+
+.main-container .create-container form input[type=text], input[type=date], input[type=password] {
+    width: 50%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    border-bottom: 2px solid rgb(59, 59, 59);
+    padding-left: 5px;
+    display: block;
+    margin-top: 15px;
+}
+
+.main-container .create-container form input[type=text]:focus, input[type=date]:focus, input[type=password]:focus {
+    outline: none;
+    transition: 0.7s;
+    border-bottom: 2px solid #27ad8a;
+}
+
+.main-container .create-container .gender-lb {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.main-container .create-container .gender-selection {
+    width: 50%;
+    background-color: transparent;
+    display: flex;
+}
+
+.main-container .create-container .button-controller {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    background-color: transparent;
+}
+
+.main-container .create-container .button-controller button {
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(29, 58, 105);
+    color: white;
+}
+
+.main-container .create-container .button-controller .create-btn {
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    position: absolute;
+    right: 70px;
+}
+
+.main-container .create-container .button-controller .create-btn:hover {
+    box-shadow: 0 0 40px 40px rgb(14, 126, 29) inset;
+    outline: 0;
+}
+
+.main-container .create-container .button-controller .return-btn {
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.main-container .create-container .button-controller .return-btn:hover {
+    color: rgb(29, 58, 105);
+    box-shadow: 0 0 40px 40px rgb(255, 255, 255) inset;
+    outline: 0;
+}
+
+.main-container .footer {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    background-color: transparent;
+}
+
+.main-container .footer p {
+    color: #CDCDCD;
+    background-color: transparent;
+    font-size: 16px;
+    text-align: center;
+}

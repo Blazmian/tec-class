@@ -1,0 +1,165 @@
+* {
+  background-color: #f2f2f2;
+  font-family: 'Montserrat';
+}
+
+.logo-TecNM {
+  position: absolute;
+  height: 100px;
+  left: 46px;
+  top: 36px;
+}
+
+.contenedor-login {
+  position: absolute;
+  width: 806px;
+  height: 684px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #FFFFFF;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+}
+
+.contenedor-login .titulo-login {
+  position: absolute;
+  background-color: white;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  
+  color: #070928;
+}
+
+.contenedor-login .toolbar-login {
+  width: 806px;
+  height: 95px;
+  background-color: #1D3A69;
+  border-radius: 30px 30px 1px 0px;
+  color: #FAFAFA;
+  position: relative;
+}
+
+.contenedor-login .toolbar-login .toolbar-text {
+  position: absolute;
+  background-color: rgba(29, 58, 105, 0);
+  margin-left: 20px;
+  display: flex;
+  padding: 5px;
+}
+
+.contenedor-login .toolbar-login .toolbar-text h1 {
+  background-color: #1D3A69;
+  padding-right: 10px;
+  font-weight: normal;
+  color: white;
+}
+
+.contenedor-login .toolbar-login .toolbar-text .hstrong {
+  font-weight: bold;
+}
+
+.contenedor-login .contenedor-logo-ith {
+  position: absolute;
+  width: 133px;
+  height: 133px;
+  background-color: white;
+  border-radius: 100%;
+  transform: translate(475%, -20%);
+}
+
+.contenedor-login .contenedor-logo-ith .logo-ITH {
+  position: absolute;
+  height: 120px;
+  background-color: rgba(0, 0, 0, 0);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contenedor-login .form-login {
+  position: absolute;
+  margin-top: 30px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-login .form-login .login-input {
+  margin-bottom: 30px;
+  width: 461px;
+  height: 68px;
+
+  background: #ECECEC;
+  border-radius: 20px;
+  border: none;
+  font-size: 24px;
+  color: #070928;
+  text-indent: 20px;
+  outline: none;
+}
+
+/*.contenedor-login .form-login input[type='text']::before, input[type='password']::before {
+  border-bottom: 1px solid red;
+  color: red;
+}*/
+
+.contenedor-login .form-login input[type='submit'] {
+  width: 209px;
+  height: 68px;
+
+  background: #1D3A69;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+}
+
+.contenedor-login .form-login input[type='submit']:hover {
+  background: #13294d;
+  cursor: pointer;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.267);
+}
+
+.contenedor-login a {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  bottom: 5%;
+  text-align: center;
+
+  font-weight: 400;
+  font-size: 24px;
+
+  color: #070928;
+  text-decoration: none;
+}
+
+.contenedor-login a:hover {
+  text-decoration-line: underline;
+}
+
+.nm-institucion {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 5%;
+
+  font-weight: 400;
+  font-size: 24px;
+
+  color: #adadad;
+}
