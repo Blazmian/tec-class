@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 import CompCreateAdministrador from "../api/Administradores/CreateAdministradores";
 import CompShowAdministradores from "../api/Administradores/ShowAdministradores";
 import CompCreateAlumno from "../api/Alumnos/CreateAlumnos";
@@ -17,7 +17,6 @@ import CompShowPersonal from "../api/PersonalEscolar/ShowPersonal";
 import logoTecNM from '../images/Logo-TecNM.png';
 import { logout } from "../services/Authentication";
 import "../styles/Administrador.css";
-import Alerts from "./Alerts";
 
 export default class Administrador extends Component {
     render() {
@@ -63,10 +62,6 @@ export default class Administrador extends Component {
                         <Route path="/administradores" element={<CompShowAdministradores />}></Route>
                         <Route path="/agregarAdministrador" element={<CompCreateAdministrador />}></Route>
                     </Routes>
-                <div className="footer">
-                    <Alerts type={"error"} message={"Usuario creado correctamente" }></Alerts>
-                    <p>INSTITUTO TECNOLÓGICO DE HERMOSILLO - 2022</p>
-                </div>
             </div>
         )
     }

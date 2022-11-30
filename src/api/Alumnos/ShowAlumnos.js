@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const URI = 'http://localhost:8000/alumnos/'
 
 const CompShowAlumnos = () => {
     const [alumnos, setAlumnos] = useState([])
-    useEffect( () => {
+    useEffect(() => {
         getAlumnos()
     }, [])
 
@@ -15,14 +17,59 @@ const CompShowAlumnos = () => {
         setAlumnos(res.data)
     }
 
+    const confirmarEliminacion = (id) => {
+        if (!id) {
+            toast.error('Debes seleccionar un alumno', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Deseas eliminar el alumno?',
+            text: "Esto no se podrá revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Borrar alumno',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteAlumno(id)
+            }
+        })
+    }
+
     const deleteAlumno = async (id) => {
-        await axios.delete(URI + id)
-        getAlumnos()
+        await axios.delete(URI + id).then(function (response) {
+            toast.success('Alumno eliminado con exito', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setInfoAlumno('')
+            setInputNombres('')
+            setInputSemestre('')
+            setInputCorreo('')
+            setInputTelefono('')
+            getAlumnos()
+        })
     }
 
     const [infoAlumno, setInfoAlumno] = useState([])
     const [inputNombres, setInputNombres] = useState('')
-    const [inputFechaNac, setInputFechaNac] = useState('')
     const [inputSemestre, setInputSemestre] = useState('')
     const [inputTelefono, setInputTelefono] = useState('')
     const [inputCorreo, setInputCorreo] = useState('')
@@ -31,7 +78,6 @@ const CompShowAlumnos = () => {
         setInfoAlumno(alumno)
         setInputNombres(alumno.nombre_alumno + " " + alumno.primer_ape + " " + alumno.segundo_ape)
         setInputSemestre(alumno.semestre)
-        setInputFechaNac(alumno.fecha_nacimiento)
         setInputCorreo(alumno.correo)
         setInputTelefono(alumno.telefono)
     }
@@ -51,14 +97,13 @@ const CompShowAlumnos = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {alumnos.map( (alumno) => (
-                            <tr key={ alumno.no_control_alumno } onClick={() => {onRowClick(alumno)}}>
-                                <td>{ alumno.no_control_alumno }</td>
-                                <td>{ alumno.primer_ape + " " + alumno.segundo_ape + " " + alumno.nombre_alumno }</td>
-                                <td>{ alumno.semestre }</td>
-                                <td>{ alumno.fecha_nacimiento }</td>
-                                <td>{ alumno.correo }</td>
-                                <td>{ alumno.telefono }</td>
+                        {alumnos.map((alumno) => (
+                            <tr key={alumno.no_control_alumno} onClick={() => { onRowClick(alumno) }}>
+                                <td>{alumno.no_control_alumno}</td>
+                                <td>{alumno.primer_ape + " " + alumno.segundo_ape + " " + alumno.nombre_alumno}</td>
+                                <td>{alumno.semestre}</td>
+                                <td>{alumno.correo}</td>
+                                <td>{alumno.telefono}</td>
                             </tr>
                         ))
                         }
@@ -71,12 +116,11 @@ const CompShowAlumnos = () => {
                     <div className="input-text-container">
                         <input value={inputNombres} onChange={(e) => setInputNombres(e)} type="text" placeholder="Nombres del Alumno"></input>
                         <input value={inputSemestre} onChange={(e) => setInputSemestre(e)} type="text" placeholder="Semestre"></input>
-                        <input value={inputFechaNac} onChange={(e) => setInputFechaNac(e)} type="text" placeholder="Fecha de Nacimiento"></input>
                         <input value={inputCorreo} onChange={(e) => setInputCorreo(e)} type="text" placeholder="Correo"></input>
                         <input value={inputTelefono} onChange={(e) => setInputTelefono(e)} type="text" placeholder="Telefono"></input>
                     </div>
                     <div className="button-controller-container">
-                        <input onClick={ () => { deleteAlumno(infoAlumno.no_control_alumno) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
+                        <input onClick={() => { confirmarEliminacion(infoAlumno.no_control_alumno) }} type="button" value="Eliminar" className="input-button delete-btn"></input>
                         <Link to={"/admin/editarAlumno/" + infoAlumno.no_control_alumno}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
                         <Link to={"/admin/agregarAlumno"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>

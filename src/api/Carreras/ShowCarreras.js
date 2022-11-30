@@ -57,8 +57,8 @@ const CompShowCarreras = () => {
                     </div>
                     <div className="button-controller-container">
                         <input onClick={ () => { deleteCarrera(infoCarrera.id_carrera) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/editarCarrera/" + infoCarrera.id_carrera}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
-                        <Link to={"/agregarCarrera"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
+                        <Link to={"/admin/editarCarrera/" + infoCarrera.id_carrera}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <Link to={"/admin/agregarCarrera"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>
             </div>
