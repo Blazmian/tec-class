@@ -3,9 +3,21 @@
 }
 
 .main-container {
-    background-color: #f2f2f2;
-    height: 100%;
+    min-height: 100%;
     width: 100%;
+}
+
+.main-content {
+    height: 85%;
+    background-color: #f2f2f2;
+    width: 100%;
+    display: flex;
+}
+.main-content-structure{
+    /*height: 100%;*/
+    width: 100%;
+    display: block;
+    
 }
 
 /* DISEÑO PARA HEADER */
@@ -47,13 +59,13 @@
 
 .admin-toolbar {
     /*height: 8vh;*/
-    height: auto;
+    height: auto;    
     background: #1D3A69;
     border-radius: 15px;
-    margin-left: 20px;
-    margin-right: 20px;
+    width: 100%;
     box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
     font-size: 16px;
+    margin-bottom: 15px;
 }
 
 .admin-toolbar ul {
@@ -82,12 +94,51 @@
     text-decoration: underline;
 }
 
+.admin-sidebar {
+    line-height: 30px;
+    min-height: 100%;
+    width: 15%;
+    background: #1D3A69;
+    border-radius: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    font-size: 16px;
+    padding-left: 30px;
+}
+
+.admin-sidebar ul {
+    padding: 0px;
+    background: #1D3A69;
+    display: block;
+    justify-content: space-around;
+}
+
+.admin-sidebar ul li {
+    background: #1D3A69;
+    color: white;
+}
+
+.admin-sidebar ul li a {
+    background: #1D3A69;
+    color: white;
+    text-decoration: none;
+}
+
+.admin-sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+.admin-sidebar ul li .active {
+    text-decoration: underline;
+}
+
 /* DISEÑO PARA EL CONTENIDO NORMAL DE UNA PANTALLA */
 
 .admin-content {
-    height: 60vh;
-    margin: 15px;
-    display: flex;    
+    /*height: 75vh;*/
+    min-height: 500px;
+    display: flex;
     background-color: transparent;
 }
 
@@ -102,22 +153,23 @@
     overflow: scroll;
 }
 
-::-webkit-scrollbar {  
-    width:8px;
-    height:8px;
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
     -webkit-border-radius: 4px;
 }
 
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track-piece {
-    background-color:transparent;
+    background-color: transparent;
 }
 
-::-webkit-scrollbar-thumb {  
+::-webkit-scrollbar-thumb {
     background-color: rgba(053, 057, 071, 0.3);
     width: 6px;
     height: 6px;
-    -webkit-border-radius:4px;
+    -webkit-border-radius: 4px;
 }
 
 .main-container .table-content-admin table {
@@ -146,15 +198,16 @@
     -webkit-transition: all 0.5s linear;
 }
 
-.main-container .table-content-admin table td, th {
-    padding: 5px;   
+.main-container .table-content-admin table td,
+th {
+    padding: 5px;
     text-align: center;
     background-color: white;
 }
 
 .main-container .edit-content-admin {
     width: 30%;
-    height: 100%;
+    height: auto;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
@@ -176,12 +229,12 @@
     margin-left: 20px;
 }
 
-.main-container .edit-content-admin form .input-text-container  {
+.main-container .edit-content-admin form .input-text-container {
     margin: 20px;
     overflow: scroll;
     overflow-x: auto;
     /*height: 200px;*/
-    height: 40%;
+    height: 30%;
     background-color: transparent;
 }
 
@@ -200,12 +253,13 @@
 
 .main-container .edit-content-admin form .button-controller-container {
     width: 100%;
-    height: 50%;
-    background-color:white;
+    height: 60%;
+    background-color: white;
     position: absolute;
     bottom: 0;
     margin-left: 20px;
     margin-right: 20px;
+    margin-top: 0px;
 }
 
 .main-container .edit-content-admin form .button-controller-container .input-button {
@@ -257,6 +311,12 @@
 .main-container .edit-content-admin form .button-controller-container .add-btn:hover {
     box-shadow: 0 0 40px 40px #000 inset;
     outline: 0;
+}
+.main-container .edit-content-admin form .button-controller-container .info-btn {
+    background-color: rgb(255, 255, 255);
+    color: rgb(29, 58, 105);
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 /* AGREGAR ELEMENTOS */
@@ -319,7 +379,9 @@
     font-size: 12px;
 }
 
-.main-container .create-container form input[type=text], input[type=date], input[type=password] {
+.main-container .create-container form input[type=text],
+input[type=date],
+input[type=password] {
     width: 50%;
     background-color: transparent;
     outline: none;
@@ -331,7 +393,9 @@
     margin-top: 15px;
 }
 
-.main-container .create-container form input[type=text]:focus, input[type=date]:focus, input[type=password]:focus {
+.main-container .create-container form input[type=text]:focus,
+input[type=date]:focus,
+input[type=password]:focus {
     outline: none;
     transition: 0.7s;
     border-bottom: 2px solid #27ad8a;
@@ -393,4 +457,30 @@
     color: rgb(29, 58, 105);
     box-shadow: 0 0 40px 40px rgb(255, 255, 255) inset;
     outline: 0;
+}
+
+.main-container .search-btn {
+    line-height: 15px;
+    margin: 15px;
+    width: 63%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    border: white;
+     
+}
+.main-container .footer {
+    width: 100%;
+    
+    position: absolute;
+    bottom: 10px;
+    background-color: transparent;
+}
+
+.main-container .footer p {
+    color: #CDCDCD;
+    background-color: transparent;
+    font-size: 16px;
+    text-align: center;
 }

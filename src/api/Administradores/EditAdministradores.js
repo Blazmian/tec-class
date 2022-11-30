@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 
 const URI = 'http://localhost:8000/alumnos/'
 
-const CompEditAlumno = () => {
+const CompEditAdministradores = () => {
 
     const {num_control} = useParams()
     const [nombres, setNombres] = useState('')
@@ -104,4 +104,4 @@ const CompEditAlumno = () => {
     )
 }
 
-export default CompEditAlumno
+export default CompEditAdministradores

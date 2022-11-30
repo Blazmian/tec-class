@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -70,16 +71,12 @@ const CompShowAlumnos = () => {
 
     const [infoAlumno, setInfoAlumno] = useState([])
     const [inputNombres, setInputNombres] = useState('')
-    const [inputSemestre, setInputSemestre] = useState('')
-    const [inputTelefono, setInputTelefono] = useState('')
     const [inputCorreo, setInputCorreo] = useState('')
 
     const onRowClick = alumno => {
         setInfoAlumno(alumno)
         setInputNombres(alumno.nombre_alumno + " " + alumno.primer_ape + " " + alumno.segundo_ape)
-        setInputSemestre(alumno.semestre)
         setInputCorreo(alumno.correo)
-        setInputTelefono(alumno.telefono)
     }
 
     return (
@@ -91,19 +88,18 @@ const CompShowAlumnos = () => {
                             <th>No- Control</th>
                             <th>Nombre</th>
                             <th>Semestre</th>
-                            <th>Fecha Nacimiento</th>
                             <th>Correo</th>
                             <th>Telefono</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {alumnos.map((alumno) => (
-                            <tr key={alumno.no_control_alumno} onClick={() => { onRowClick(alumno) }}>
-                                <td>{alumno.no_control_alumno}</td>
-                                <td>{alumno.primer_ape + " " + alumno.segundo_ape + " " + alumno.nombre_alumno}</td>
-                                <td>{alumno.semestre}</td>
-                                <td>{alumno.correo}</td>
-                                <td>{alumno.telefono}</td>
+                        {alumnos.map( (alumno) => (
+                            <tr key={ alumno.no_control_alumno } onClick={() => {onRowClick(alumno)}}>
+                                <td>{ alumno.no_control_alumno }</td>
+                                <td>{ alumno.primer_ape + " " + alumno.segundo_ape + " " + alumno.nombre_alumno }</td>
+                                <td>{ alumno.semestre }</td>
+                                <td>{ alumno.correo }</td>
+                                <td>{ alumno.telefono }</td>
                             </tr>
                         ))
                         }
@@ -115,9 +111,7 @@ const CompShowAlumnos = () => {
                     <label>Datos del Alumno</label>
                     <div className="input-text-container">
                         <input value={inputNombres} onChange={(e) => setInputNombres(e)} type="text" placeholder="Nombres del Alumno"></input>
-                        <input value={inputSemestre} onChange={(e) => setInputSemestre(e)} type="text" placeholder="Semestre"></input>
                         <input value={inputCorreo} onChange={(e) => setInputCorreo(e)} type="text" placeholder="Correo"></input>
-                        <input value={inputTelefono} onChange={(e) => setInputTelefono(e)} type="text" placeholder="Telefono"></input>
                     </div>
                     <div className="button-controller-container">
                         <input onClick={() => { confirmarEliminacion(infoAlumno.no_control_alumno) }} type="button" value="Eliminar" className="input-button delete-btn"></input>

@@ -22,16 +22,11 @@ const CompShowPersonal = () => {
 
     const [infoPersonal, setInfoPersonal] = useState([])
     const [inputNombres, setInputNombres] = useState('')
-    const [inputFechaNac, setInputFechaNac] = useState('')
-    const [inputTelefono, setInputTelefono] = useState('')
     const [inputCorreo, setInputCorreo] = useState('')
 
     const onRowClick = persona => {
         setInfoPersonal(persona)
         setInputNombres(persona.nombre + " " + persona.primer_ape + " " + persona.segundo_ape)
-        setInputFechaNac(persona.fecha_nacimiento)
-        setInputCorreo(persona.correo)
-        setInputTelefono(persona.telefono)
     }
 
     return (
@@ -40,11 +35,9 @@ const CompShowPersonal = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>Id Personal</th>
+                            <th>ID Personal</th>
                             <th>Nombre</th>
-                            <th>Fecha Nacimiento</th>
                             <th>Correo</th>
-                            <th>Telefono</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,8 +45,6 @@ const CompShowPersonal = () => {
                             <tr key={ persona.id_personal } onClick={() => {onRowClick(persona)}}>
                                 <td>{ persona.id_personal }</td>
                                 <td>{ persona.primer_ape + " " + persona.segundo_ape + " " + persona.nombre }</td>
-                                <td>{ persona.fecha_nacimiento }</td>
-                                <td>{ persona.correo }</td>
                                 <td>{ persona.telefono }</td>
                             </tr>
                         ))
@@ -66,9 +57,7 @@ const CompShowPersonal = () => {
                     <label>Datos del Personal</label>
                     <div className="input-text-container">
                         <input value={inputNombres} onChange={(e) => setInputNombres(e)} type="text" placeholder="Nombres del Personal"></input>
-                        <input value={inputFechaNac} onChange={(e) => setInputFechaNac(e)} type="text" placeholder="Fecha de Nacimiento"></input>
                         <input value={inputCorreo} onChange={(e) => setInputCorreo(e)} type="text" placeholder="Correo"></input>
-                        <input value={inputTelefono} onChange={(e) => setInputTelefono(e)} type="text" placeholder="Telefono"></input>
                     </div>
                     <div className="button-controller-container">
                         <input onClick={ () => { deletePersonal(infoPersonal.id_personal) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
