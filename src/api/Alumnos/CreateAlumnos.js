@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
-import Alerts from "../../components/Alerts";
+import { toast } from "react-toastify";
 
 const URI = 'http://localhost:8000/alumnos/'
 
@@ -22,7 +22,38 @@ const CompCreateAlumno = () => {
         e.preventDefault()
         await axios.post(URI, { no_control_alumno: getRandomInt(10000000, 100000000), nombre_alumno: nombres, primer_ape: primer_ape, 
             segundo_ape: segundo_ape, fecha_nacimiento: fecha_nacimiento, semestre: 1, 
-            telefono: telefono, domicilio: domicilio, nip: getRandomInt(1000, 10000), correo: correo, genero: genero }) 
+            telefono: telefono, domicilio: domicilio, nip: getRandomInt(1000, 10000), correo: correo, genero: genero })
+            .then(function(response)  {
+                toast.success('Alumno agregado con exito', {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                setNombres('')
+                setPrimerApellido('')
+                setSegundoApellido('')
+                setFechaNac('')
+                setTelefono('')
+                setDomicilio('')
+                setCorreo('')
+                setGenero('Masculino')
+            }).catch(function (error) {
+                toast.error('No se pudo agregar al alumno', {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }) 
     }
 
     const setGender = e => {

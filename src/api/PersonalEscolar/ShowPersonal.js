@@ -61,8 +61,8 @@ const CompShowPersonal = () => {
                     </div>
                     <div className="button-controller-container">
                         <input onClick={ () => { deletePersonal(infoPersonal.id_personal) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/editarPersonal/" + infoPersonal.id_personal}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
-                        <Link to={"/agregarPersonal"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
+                        <Link to={"/admin/editarPersonal/" + infoPersonal.id_personal}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <Link to={"/admin/agregarPersonal"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>
             </div>

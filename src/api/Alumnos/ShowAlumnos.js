@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const URI = 'http://localhost:8000/alumnos/'
 
 const CompShowAlumnos = () => {
     const [alumnos, setAlumnos] = useState([])
-    useEffect( () => {
+    useEffect(() => {
         getAlumnos()
     }, [])
 
@@ -15,9 +18,55 @@ const CompShowAlumnos = () => {
         setAlumnos(res.data)
     }
 
+    const confirmarEliminacion = (id) => {
+        if (!id) {
+            toast.error('Debes seleccionar un alumno', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Deseas eliminar el alumno?',
+            text: "Esto no se podrá revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Borrar alumno',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteAlumno(id)
+            }
+        })
+    }
+
     const deleteAlumno = async (id) => {
-        await axios.delete(URI + id)
-        getAlumnos()
+        await axios.delete(URI + id).then(function (response) {
+            toast.success('Alumno eliminado con exito', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setInfoAlumno('')
+            setInputNombres('')
+            setInputSemestre('')
+            setInputCorreo('')
+            setInputTelefono('')
+            getAlumnos()
+        })
     }
 
     const [infoAlumno, setInfoAlumno] = useState([])
@@ -65,9 +114,9 @@ const CompShowAlumnos = () => {
                         <input value={inputCorreo} onChange={(e) => setInputCorreo(e)} type="text" placeholder="Correo"></input>
                     </div>
                     <div className="button-controller-container">
-                        <input onClick={ () => { deleteAlumno(infoAlumno.no_control_alumno) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/admin/usuarios/editarAlumno/" + infoAlumno.no_control_alumno}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
-                        <Link to={"/admin/usuarios/agregarAlumno"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
+                        <input onClick={() => { confirmarEliminacion(infoAlumno.no_control_alumno) }} type="button" value="Eliminar" className="input-button delete-btn"></input>
+                        <Link to={"/admin/editarAlumno/" + infoAlumno.no_control_alumno}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <Link to={"/admin/agregarAlumno"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>
             </div>
