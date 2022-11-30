@@ -18,8 +18,6 @@ function FormIS() {
         if (user.length > 0 && pass.length > 0) {
             const res = await axios.post(URI, { usuario: user, pass: pass }).then(function(response) {
                 toast.success('Sesión iniciada con exito', {
-                    position: "bottom-right",
-                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -32,8 +30,6 @@ function FormIS() {
             }).catch(function (error) {
                 if (error.toJSON().status == 400 || error.toJSON().status == 404) {
                     toast.error('Usuario o contraseña incorrectos', {
-                        position: "bottom-right",
-                        autoClose: 3000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -84,7 +80,6 @@ function FormIS() {
                 </form>
                 <a href=''>¿Olvidaste tu contraseña?</a>
             </div>
-            <h1 className='nm-institucion'>INSTITUTO TECNOLÓGICO DE HERMOSILLO - 2022</h1>
         </div>
 
     )

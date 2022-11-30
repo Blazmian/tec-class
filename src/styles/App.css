@@ -5,3 +5,17 @@
 body {
   background-color: #f2f2f2;
 }
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  background-color: transparent;
+}
+
+.footer p {
+  color: #CDCDCD;
+  background-color: transparent;
+  font-size: 16px;
+  text-align: center;
+}

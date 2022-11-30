@@ -394,17 +394,3 @@
     box-shadow: 0 0 40px 40px rgb(255, 255, 255) inset;
     outline: 0;
 }
-
-.main-container .footer {
-    width: 100%;
-    position: absolute;
-    bottom: 10px;
-    background-color: transparent;
-}
-
-.main-container .footer p {
-    color: #CDCDCD;
-    background-color: transparent;
-    font-size: 16px;
-    text-align: center;
-}

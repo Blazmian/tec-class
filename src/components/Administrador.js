@@ -62,9 +62,6 @@ export default class Administrador extends Component {
                         <Route path="/administradores" element={<CompShowAdministradores />}></Route>
                         <Route path="/agregarAdministrador" element={<CompCreateAdministrador />}></Route>
                     </Routes>
-                <div className="footer">
-                    <p>INSTITUTO TECNOLÓGICO DE HERMOSILLO - 2022</p>
-                </div>
             </div>
         )
     }
