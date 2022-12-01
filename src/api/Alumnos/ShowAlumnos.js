@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
@@ -11,6 +11,7 @@ const CompShowAlumnos = () => {
     useEffect(() => {
         getAlumnos()
     }, [])
+    const navigate = useNavigate()
 
     const getAlumnos = async () => {
         const res = await axios.get(URI)
@@ -33,11 +34,12 @@ const CompShowAlumnos = () => {
         }
 
         Swal.fire({
-            title: '¿Deseas eliminar el alumno?',
+            title: '¿Deseas eliminar el alumno ' + infoAlumno.nombre_alumno + '?',
             text: "Esto no se podrá revertir",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Borrar alumno',
+            confirmButtonColor: '#f53333',
             cancelButtonText: 'Cancelar',
             reverseButtons: true
         }).then((result) => {
@@ -76,6 +78,23 @@ const CompShowAlumnos = () => {
         setInputCorreo(alumno.correo)
     }
 
+    const editarAlumno = () => {
+        if (infoAlumno.no_control_alumno) {
+            navigate('/admin/usuarios/editarAlumno/' + infoAlumno.no_control_alumno)
+        } else {
+            toast.error('Debes seleccionar un alumno', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+    }
+
     return (
         <div className="admin-content">
             <div className="table-content-admin">
@@ -112,7 +131,7 @@ const CompShowAlumnos = () => {
                     </div>
                     <div className="button-controller-container">
                         <input onClick={() => { confirmarEliminacion(infoAlumno.no_control_alumno) }} type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/admin/usuarios/editarAlumno/" + infoAlumno.no_control_alumno}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <input type="button" value="Editar" className="input-button edit-btn" onClick={() => editarAlumno()}></input>
                         <Link to={"/admin/usuarios/agregarAlumno"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>

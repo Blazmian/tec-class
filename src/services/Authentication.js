@@ -19,37 +19,22 @@ const Authentication = () => {
     const getAuthentication = async () => {
         if (authInformation != null) {
             const res = await axios.post(URI, { token: authInformation }).then(function (response) {
+                setUser(response.data.usuario)
+                setId(response.data.id_personal)
                 navigate('/admin')
             }).catch(function (error) {
+                toast.error('No se pudo autenticar', {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
                 navigate('/login')
             })
-            switch (res.status) {
-                case 200:
-                    setUser(res.data.usuario)
-                    setId(res.data.id_personal)
-                    break;
-
-                case 401:
-                    console.log('Error: No se pudo autenticar')
-                    toast.error('Error: No se pudo autenticar')
-                    break;
-
-                case 404:
-                    console.log('Error: Usuario no encontrado')
-                    toast.error('Error: Usuario no encontrado')
-                    break;
-
-                default:
-                    console.log('Error inesperado')
-                    toast.error('Error inesperado')
-                    setUser(null)
-                    break;
-            }
-            if (res.status == 200) {
-                navigate('/admin')
-            } else {
-                navigate('/login')
-            }
         } else {
             navigate('/login')
         }
