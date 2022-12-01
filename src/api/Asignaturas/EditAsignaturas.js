@@ -2,9 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 
-const URI = 'http://localhost:8000/carreras/'
+const URI = 'http://localhost:8000/asgnaturas/'
 
-const CompEditCarrera = () => {
+const CompEditAsignaturas = () => {
 
     const {id} = useParams()
     const [carreras, setCarreras] = useState('')
@@ -35,7 +35,7 @@ const CompEditCarrera = () => {
                     <input value={carreras} onChange={ (e) => setCarreras(e.target.value)} type="text" placeholder="Nombre de la Materia"></input>
                 </div>
                 <div className="button-controller">
-                <Link to={"/admin/otros/carreras"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/otros/asignaturas"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Editar</button>
                 </div>
             </form>
@@ -43,4 +43,4 @@ const CompEditCarrera = () => {
     )
 }
 
-export default CompEditCarrera
+export default CompEditAsignaturas
