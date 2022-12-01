@@ -5,7 +5,6 @@ import CompCreateAlumno from "../../api/Alumnos/CreateAlumnos";
 import CompEditAlumno from "../../api/Alumnos/EditAlumnos";
 import CompShowAlumnos from "../../api/Alumnos/ShowAlumnos";
 import CompShowDocentes from "../../api/Docentes/ShowDocentes";
-//import CompShowDocentes from "../Alumnos/ShowDocentes";
 
 const CompUsuarios = () => {
     return (

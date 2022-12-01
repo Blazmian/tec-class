@@ -7,7 +7,7 @@ const URI = 'http://localhost:8000/personal_escolar/'
 const CompEditPersonal = () => {
 
     const {id} = useParams()
-    const [nombres, setNombres] = useState('')
+    const [nombre, setNombres] = useState('')
     const [primer_ape, setPrimerApellido] = useState('')
     const [segundo_ape, setSegundoApellido] = useState('')
     const [fecha_nacimiento, setFechaNac] = useState('')
@@ -21,7 +21,7 @@ const CompEditPersonal = () => {
     const update = async (e) => {
         e.preventDefault()
         await axios.put(URI + id, {
-            nombre: nombres, 
+            nombre: nombre, 
             primer_ape: primer_ape, 
             segundo_ape: segundo_ape, 
             correo: correo, 
@@ -31,7 +31,7 @@ const CompEditPersonal = () => {
             domicilio: domicilio, 
             fecha_nacimiento: fecha_nacimiento
         })
-        navigate('/personal')
+        navigate('/personalescolar')
     }
 
     useEffect( () => {
@@ -61,7 +61,7 @@ const CompEditPersonal = () => {
             <form onSubmit={ update }>
                 <div className="personal-info-container">
                     <label>Información Personal</label>
-                    <input value={nombres} onChange={ (e) => setNombres(e.target.value)} type="text" placeholder="Nombres del Alumno"></input>
+                    <input value={nombre} onChange={ (e) => setNombres(e.target.value)} type="text" placeholder="Nombre"></input>
                     <input value={primer_ape} onChange={ (e) => setPrimerApellido(e.target.value)} type="text" placeholder="Primer Apellido"></input>
                     <input value={segundo_ape} onChange={ (e) => setSegundoApellido(e.target.value)} type="text" placeholder="Segundo Apellido"></input>
                     <input value={fecha_nacimiento} onChange={ (e) => setFechaNac(e.target.value)} type="date"></input>
@@ -87,13 +87,13 @@ const CompEditPersonal = () => {
                 </div>
                 <div className="contact-info-container">
                     <label>Información de Contacto</label>
-                    <input value={telefono} onChange={ (e) => setTelefono(e.target.value)} type="text" placeholder="Telefono del Alumno"></input>
-                    <input value={domicilio} onChange={ (e) => setDomicilio(e.target.value)} type="text" placeholder="Domicilio del Alumno"></input>
+                    <input value={telefono} onChange={ (e) => setTelefono(e.target.value)} type="text" placeholder="Telefono del Personal"></input>
+                    <input value={domicilio} onChange={ (e) => setDomicilio(e.target.value)} type="text" placeholder="Domicilio del Personal"></input>
                     <input value={correo} onChange={ (e) => setCorreo(e.target.value)} type="text" placeholder="Correo"></input>
                     <input value={contrasena} onChange={ (e) => setContrasena(e.target.value)} type="password" placeholder="Contraseña"></input>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/personal"}><button className="return-btn">⇽ Volver</button></Link>
+                <Link to={"/admin/personalescolar/personalescolar"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Editar</button>
                 </div>
             </form>

@@ -96,7 +96,7 @@ const CompEditAlumno = () => {
                     <input value={correo} onChange={ (e) => setCorreo(e.target.value)} type="text" placeholder="Correo"></input>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/admin/alumnos"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/usuarios/alumnos"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Editar</button>
                 </div>
             </form>

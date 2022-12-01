@@ -1,9 +1,8 @@
 import { Link, NavLink, Route, Routes } from "react-router-dom";
-import CompCreateAlumno from "../../api/Alumnos/CreateAlumnos";
-import CompEditAlumno from "../../api/Alumnos/EditAlumnos";
 import CompShowClases from "../../api/Clases/ShowClases";
-import CompShowDocentes from "../../api/Docentes/ShowDocentes";
 import CompShowGrupos from "../../api/Grupos/ShowGrupos";
+import CompEditGrupos from "../../api/Grupos/EditGrupos";
+import CompCreateGrupos from "../../api/Grupos/CreateGrupos";
 
 
 const CompInfoEscolar = () => {
@@ -19,6 +18,8 @@ const CompInfoEscolar = () => {
                 <Routes>
                     <Route path="/grupos" element={<CompShowGrupos/>} />
                     <Route path="/clases" element={<CompShowClases/>} />
+                    <Route path="/editarGrupos/:num_control" element={<CompEditGrupos/>} />
+                    <Route path="/agregarGrupos" element={<CompCreateGrupos/>} />
                 </Routes>
             
             </div>

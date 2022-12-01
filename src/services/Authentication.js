@@ -18,7 +18,11 @@ const Authentication = () => {
 
     const getAuthentication = async () => {
         if (authInformation != null) {
-            const res = await axios.post(URI, { token: authInformation })
+            const res = await axios.post(URI, { token: authInformation }).then(function (response) {
+                navigate('/admin')
+            }).catch(function (error) {
+                navigate('/login')
+            })
             switch (res.status) {
                 case 200:
                     setUser(res.data.usuario)

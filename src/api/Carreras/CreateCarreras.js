@@ -46,7 +46,7 @@ const CompCreateCarrera = () => {
                     <input value={carreras} onChange={ (e) => setCarreras(e.target.value)} type="text" placeholder="Nombre de la Carrera"></input>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/admin/carreras"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/otros/carreras"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Agregar</button>
                 </div>
             </form>

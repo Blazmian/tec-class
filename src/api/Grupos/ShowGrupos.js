@@ -30,10 +30,8 @@ const CompShowGrupos = () => {
                     </div>
                     <div className="button-controller-container">
                         <input onClick={/* () => { deleteAlumno(infoAlumno.no_control_alumno) } */""} type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/admin/usuarios/editarAlumno/" /*+ infoAlumno.no_control_alumno*/}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
-                        <Link to={"/admin/usuarios/agregarAlumno"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
-                        <Link to={"/admin/informacion_escolar/info_informacion_escolar"}><input type="button" value="Más Información" className="input-button info-btn"></input></Link>
-                    </div>
+                        <Link to={"/admin/informacion_escolar/editarGrupos/" /*+ infoAlumno.no_control_alumno*/}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <Link to={"/admin/informacion_escolar/agregarGrupos/"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>                    </div>
                 </form>
             </div>
         </div>

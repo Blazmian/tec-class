@@ -106,7 +106,7 @@ const CompCreatePersonal = () => {
                     <input type="password" placeholder="Confirmar Contraseña"></input>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/admin/personal"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/personalescolar/personalescolar"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Agregar</button>
                 </div>
             </form>

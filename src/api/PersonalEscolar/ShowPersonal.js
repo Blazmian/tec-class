@@ -27,6 +27,7 @@ const CompShowPersonal = () => {
     const onRowClick = persona => {
         setInfoPersonal(persona)
         setInputNombres(persona.nombre + " " + persona.primer_ape + " " + persona.segundo_ape)
+        setInputCorreo(persona.correo)
     }
 
     return (
@@ -45,7 +46,7 @@ const CompShowPersonal = () => {
                             <tr key={ persona.id_personal } onClick={() => {onRowClick(persona)}}>
                                 <td>{ persona.id_personal }</td>
                                 <td>{ persona.primer_ape + " " + persona.segundo_ape + " " + persona.nombre }</td>
-                                <td>{ persona.telefono }</td>
+                                <td>{ persona.correo }</td>
                             </tr>
                         ))
                         }
@@ -61,8 +62,8 @@ const CompShowPersonal = () => {
                     </div>
                     <div className="button-controller-container">
                         <input onClick={ () => { deletePersonal(infoPersonal.id_personal) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/admin/editarPersonal/" + infoPersonal.id_personal}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
-                        <Link to={"/admin/agregarPersonal"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
+                        <Link to={"/admin/personalescolar/editarPersonalescolar/" + infoPersonal.id_personal}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <Link to={"/admin/personalescolar/agregarPersonalescolar/"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>
             </div>
