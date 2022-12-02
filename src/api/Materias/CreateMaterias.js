@@ -7,10 +7,24 @@ const URI = 'http://localhost:8000/materias/'
 
 const CompCreateMateria = () => {
     const [materias, setMaterias] = useState('')
-    const navigate = useNavigate()
 
     const store = async (e) => {
         e.preventDefault()
+
+        if (!materias) {
+            toast.error('Debes llenar todos los campos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
         await axios.post(URI, { nombre_asignatura: materias })
         .then(function(response)  {
             toast.success('Materia agregada con exito', {
@@ -46,7 +60,7 @@ const CompCreateMateria = () => {
                     <input value={materias} onChange={ (e) => setMaterias(e.target.value)} type="text" placeholder="Nombre de la Materia"></input>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/admin/materias"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/otros/materias"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Agregar</button>
                 </div>
             </form>

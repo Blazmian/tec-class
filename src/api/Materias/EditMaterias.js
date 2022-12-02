@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
+import { toast } from "react-toastify";
 
 const URI = 'http://localhost:8000/materias/'
 
@@ -12,10 +13,43 @@ const CompEditMateria = () => {
 
     const update = async (e) => {
         e.preventDefault()
-        await axios.put(URI + id, {
-            nombre_asignatura: materias
-        })
-        navigate('/materias')
+        if (!materias) {
+            toast.error('Debes llenar todos los campos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
+        await axios.put(URI + id, { nombre_asignatura: materias }).then(function(response)  {
+            toast.success('Materia editada con exito', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }).catch(function (error) {
+            toast.error('No se pudo editar la materia', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }) 
     }
 
     useEffect( () => {
@@ -35,7 +69,7 @@ const CompEditMateria = () => {
                     <input value={materias} onChange={ (e) => setMaterias(e.target.value)} type="text" placeholder="Nombre de la Materia"></input>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/materias"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/otros/materias"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Editar</button>
                 </div>
             </form>

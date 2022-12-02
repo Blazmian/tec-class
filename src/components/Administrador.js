@@ -23,16 +23,13 @@ export default class Administrador extends Component {
                 <div className="main-content">
                     <div className="admin-sidebar">
                         <ul>
-                            <li><NavLink to={"/admin/usuarios/"} className={({ isActive }) => isActive ? 'active' : ""}>Usuarios</NavLink></li>
-                            <li><NavLink to={"/admin/personalescolar"}>Personal Escolar</NavLink></li>
-                            <li><NavLink to={"/admin/informacion_escolar"}>Informacion Escolar</NavLink></li>
-                            <li><NavLink to={"/admin/otros"}>Otros</NavLink></li>
+                            <li><NavLink to={"/admin/usuarios/alumnos"} className={({ isActive }) => isActive ? 'active' : ""}>Usuarios</NavLink></li>
+                            <li><NavLink to={"/admin/personalescolar/personalescolar"}>Personal Escolar</NavLink></li>
+                            <li><NavLink to={"/admin/informacion_escolar/grupos"}>Informacion Escolar</NavLink></li>
+                            <li><NavLink to={"/admin/otros/materias"}>Otros</NavLink></li>
                         </ul>
                     </div>
                     <div className="main-content-structure">
-                        <div className="logo-ith">
-                            <image src="/ITH.png"></image>
-                        </div>
                         <Routes>
                             <Route path="/usuarios/*" element={ <CompUsuarios/> } />
                             <Route path="/personalescolar/*" element={ <CompPersonalEscolar/> } />

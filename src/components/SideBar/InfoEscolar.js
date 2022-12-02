@@ -1,4 +1,4 @@
-import { Link, NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 import CompShowClases from "../../api/Clases/ShowClases";
 import CompShowGrupos from "../../api/Grupos/ShowGrupos";
 import CompEditGrupos from "../../api/Grupos/EditGrupos";

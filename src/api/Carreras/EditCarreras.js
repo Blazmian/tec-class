@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
+import { toast } from "react-toastify";
 
 const URI = 'http://localhost:8000/carreras/'
 
@@ -12,10 +13,46 @@ const CompEditCarrera = () => {
 
     const update = async (e) => {
         e.preventDefault()
+
+        if (!carreras) {
+            toast.error('Debes llenar todos los campos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
         await axios.put(URI + id, {
             nombre_carrera: carreras
+        }).then(function(response)  {
+            toast.success('Carrera editada con exito', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }).catch(function (error) {
+            toast.error('No se pudo editar la carrera', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         })
-        navigate('/carreras')
     }
 
     useEffect( () => {

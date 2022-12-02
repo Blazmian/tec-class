@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const URI = 'http://localhost:8000/personal_escolar/'
 
@@ -9,15 +11,61 @@ const CompShowPersonal = () => {
     useEffect( () => {
         getPersonal()
     }, [])
+    const navigate = useNavigate();
 
     const getPersonal = async () => {
         const res = await axios.get(URI)
         setPersonal(res.data)
     }
 
+    const confirmarEliminacion = (id) => {
+        if (!id) {
+            toast.error('Debes seleccionar un personal', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Deseas eliminar el personal ' + infoPersonal.nombre + '?',
+            text: "Esto no se podrá revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Borrar personal',
+            confirmButtonColor: '#f53333',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deletePersonal(id)
+            }
+        })
+    }
+
     const deletePersonal = async (id) => {
-        await axios.delete(URI + id)
-        getPersonal()
+        await axios.delete(URI + id).then(function (response) {
+            toast.success('Personal eliminado con exito', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setInfoPersonal('')
+            setInputNombres('')
+            setInputCorreo('')
+            getPersonal()
+        })
     }
 
     const [infoPersonal, setInfoPersonal] = useState([])
@@ -28,6 +76,23 @@ const CompShowPersonal = () => {
         setInfoPersonal(persona)
         setInputNombres(persona.nombre + " " + persona.primer_ape + " " + persona.segundo_ape)
         setInputCorreo(persona.correo)
+    }
+
+    const editarPersonal = () => {
+        if (infoPersonal.id_personal) {
+            navigate('/admin/personalescolar/editarPersonalescolar/' + infoPersonal.id_personal)
+        } else {
+            toast.error('Debes seleccionar un personal', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     }
 
     return (
@@ -61,8 +126,8 @@ const CompShowPersonal = () => {
                         <input value={inputCorreo} onChange={(e) => setInputCorreo(e)} type="text" placeholder="Correo"></input>
                     </div>
                     <div className="button-controller-container">
-                        <input onClick={ () => { deletePersonal(infoPersonal.id_personal) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/admin/personalescolar/editarPersonalescolar/" + infoPersonal.id_personal}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <input onClick={ () => { confirmarEliminacion(infoPersonal.id_personal) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
+                        <input type="button" value="Editar" className="input-button edit-btn" onClick={() => editarPersonal()}></input>
                         <Link to={"/admin/personalescolar/agregarPersonalescolar/"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>

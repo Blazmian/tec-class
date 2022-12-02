@@ -3,22 +3,20 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
 
-const URI = 'http://localhost:8000/administradores/'
-const URIP = 'http://localhost:8000/personalNotAdmin/'
+const URI = 'http://localhost:8000/docentes/'
+const URIP = 'http://localhost:8000/personalNotDocente/'
 
-const CompCreateAdministrador = () => {
-    const [usuario, setUsuario] = useState('')
-    const [pass, setPass] = useState('')
+const CompCreateDocente = () => {
+    const [nip, setNip] = useState('')
     const [id_personal, setIdPersonal] = useState('')
     const [nombres, setNombres] = useState('')
     const [personal, setPersonal] = useState([])
-    const navigate = useNavigate()
 
     useEffect(() => {
-        getPersonalNotAdmin()
+        getPersonalNotDocente()
     }, [])
 
-    const getPersonalNotAdmin = async () => {
+    const getPersonalNotDocente = async () => {
         const res = await axios.get(URIP)
         setPersonal(res.data)
     }
@@ -26,7 +24,7 @@ const CompCreateAdministrador = () => {
     const store = async (e) => {
         e.preventDefault()
 
-        if (usuario.length * pass.length === 0) {
+        if (nip.length === 0) {
             toast.error('Debes llenar todos los campos', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -54,8 +52,14 @@ const CompCreateAdministrador = () => {
             return;
         }
 
-        await axios.post(URI, { usuario, pass, id_personal }).then(function (response) {
-            toast.success('Administrador agregado con exito', {
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        await axios.post(URI, { no_control_docente: getRandomInt(10000000, 100000000), nip: nip, id_personal: id_personal }).then(function (response) {
+            toast.success('Docente agregado con exito', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -65,12 +69,11 @@ const CompCreateAdministrador = () => {
                 progress: undefined,
                 theme: "light",
             });
-            setUsuario('')
-            setPass('')
+            setNip('')
             setNombres('')
-            getPersonalNotAdmin()
+            getPersonalNotDocente()
         }).catch(function (error) {
-            toast.error('No se pudo añadir el administrador', {
+            toast.error('No se pudo añadir el docente', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -90,12 +93,11 @@ const CompCreateAdministrador = () => {
 
     return (
         <div className="create-container">
-            <h1>Agregar Administrador</h1>
+            <h1>Agregar Docente</h1>
             <form onSubmit={store}>
                 <div className="personal-info-container">
                     <label>Información para Administrador</label>
-                    <input value={usuario} onChange={(e) => setUsuario(e.target.value)} type="text" placeholder="Usuario"></input>
-                    <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="Contraseña"></input>
+                    <input value={nip} onChange={(e) => setNip(e.target.value)} type="password" placeholder="Nip"></input>
                     <input value={nombres} onChange={(e) => setNombres(e.target.value)} type="text" placeholder="Nombre del Personal"></input>
                 </div>
                 <div className="contact-info-container">
@@ -126,7 +128,7 @@ const CompCreateAdministrador = () => {
                     </div>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/admin/personalescolar/administradores"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/usuarios/docentes"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit" onChange={(e) => setIdPersonal(e.target.value)}>Agregar</button>
                 </div>
             </form>
@@ -134,4 +136,4 @@ const CompCreateAdministrador = () => {
     )
 }
 
-export default CompCreateAdministrador
+export default CompCreateDocente

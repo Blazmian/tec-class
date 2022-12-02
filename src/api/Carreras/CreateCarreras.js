@@ -7,10 +7,24 @@ const URI = 'http://localhost:8000/carreras/'
 
 const CompCreateCarrera = () => {
     const [carreras, setCarreras] = useState('')
-    const navigate = useNavigate()
 
     const store = async (e) => {
         e.preventDefault()
+
+        if (!carreras) {
+            toast.error('Debes llenar todos los campos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
         await axios.post(URI, { nombre_carrera: carreras })
         .then(function(response)  {
             toast.success('Carerra agregada con exito', {

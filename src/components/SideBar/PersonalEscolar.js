@@ -1,13 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 import CompShowAdministradores from "../../api/Administradores/ShowAdministradores";
 import CompShowPersonal from "../../api/PersonalEscolar/ShowPersonal";
 import CompCreatePersonal from "../../api/PersonalEscolar/CreatePersonal";
 import CompEditPersonal from "../../api/PersonalEscolar/EditPersonal";
-import CompShowPuestos from "../../api/Puestos/ShowPuestos";
-import CompCreatePuestos from "../../api/Puestos/CreatePuestos";
-import CompEditPuestos from "../../api/Puestos/EditPuestos.js";
+import CompCreateAdministrador from "../../api/Administradores/CreateAdministradores";
 
 const CompPersonalEscolar = () => {
     return (
@@ -21,9 +17,10 @@ const CompPersonalEscolar = () => {
             </div>
                 <Routes>
                     <Route path="/personalescolar" element={<CompShowPersonal/>} />
-                    <Route path="/editarpersonalescolar/:num_control" element={<CompEditPersonal/>} />
+                    <Route path="/editarpersonalescolar/:id" element={<CompEditPersonal/>} />
                     <Route path="/agregarpersonalescolar" element={<CompCreatePersonal/>} />
                     <Route path="/administradores" element={<CompShowAdministradores/>} />
+                    <Route path="/agregarAdministrador" element={<CompCreateAdministrador/>} />
                 </Routes>
             
             </div>
