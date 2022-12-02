@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const URI = 'http://localhost:8000/auth/'
 var authInformation = null;
@@ -26,14 +27,17 @@ const Authentication = () => {
 
                 case 401:
                     console.log('Error: No se pudo autenticar')
+                    toast.error('Error: No se pudo autenticar')
                     break;
 
                 case 404:
                     console.log('Error: Usuario no encontrado')
+                    toast.error('Error: Usuario no encontrado')
                     break;
 
                 default:
                     console.log('Error inesperado')
+                    toast.error('Error inesperado')
                     setUser(null)
                     break;
             }

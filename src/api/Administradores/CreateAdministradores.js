@@ -41,7 +41,9 @@ const CompCreateAdministrador = () => {
     }
 
     return (
+        
         <div className="create-container">
+            
             <h1>Agregar Administrador</h1>
             <form /*onSubmit={store}*/>
                 <div className="personal-info-container">

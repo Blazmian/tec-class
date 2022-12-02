@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify";
 
 const URI = 'http://localhost:8000/personal_escolar/'
 
@@ -28,8 +29,38 @@ const CompCreatePersonal = () => {
             contrasena: contrasena, 
             domicilio: domicilio, 
             fecha_nacimiento: fecha_nacimiento
-        })
-        navigate('/personal')
+        }).then(function(response)  {
+            toast.success('Personal agregado con exito', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setNombres('')
+            setPrimerApellido('')
+            setSegundoApellido('')
+            setFechaNac('')
+            setTelefono('')
+            setDomicilio('')
+            setCorreo('')
+            setGenero('Masculino')
+            setContrasena('')
+        }).catch(function (error) {
+            toast.error('No se pudo agregar al personal', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }) 
     }
 
     const setGender = e => {
@@ -75,7 +106,7 @@ const CompCreatePersonal = () => {
                     <input type="password" placeholder="Confirmar Contraseña"></input>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/personal"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/personal"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Agregar</button>
                 </div>
             </form>

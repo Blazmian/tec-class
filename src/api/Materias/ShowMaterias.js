@@ -57,8 +57,8 @@ const CompShowMaterias = () => {
                     </div>
                     <div className="button-controller-container">
                         <input onClick={ () => { deleteMateria(infoMateria.id_asignatura) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/editarMateria/" + infoMateria.id_asignatura}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
-                        <Link to={"/agregarMateria"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
+                        <Link to={"/admin/editarMateria/" + infoMateria.id_asignatura}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <Link to={"/admin/agregarMateria"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>
             </div>
