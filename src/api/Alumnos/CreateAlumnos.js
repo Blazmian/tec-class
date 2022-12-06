@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
+import { soloLetras, validarMail, verificarLongitud } from "../../tools/Methods";
 
 const URI = 'http://localhost:8000/alumnos/'
 
@@ -36,8 +37,78 @@ const CompCreateAlumno = () => {
             return;
         }
 
+        if (!soloLetras(nombres)) {
+            toast.error('El nombre solo admite letras', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        if (!verificarLongitud(nombres, 2, 30)) {
+            toast.error('El nombre debe ser mayor de 2 y menor a 30 caracteres', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        if (!(soloLetras(primer_ape) && soloLetras(segundo_ape))) {
+            toast.error('Los apellidos solo admiten letras', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        if (!(verificarLongitud(primer_ape, 4, 15) && verificarLongitud(segundo_ape, 4, 15))) {
+            toast.error('Los apellidos deben ser mayores de 4 y menores a 15 caracteres', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
         if (fecha_nacimiento.length === 0) {
             toast.error('Debes introducir una fecha de nacimiento', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        if (telefono.length !== 10) {
+            toast.error('Debes introducir un numero de telefono valido', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -71,8 +142,7 @@ const CompCreateAlumno = () => {
             return;
         }
 
-        if (/^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.exec(correo)) {
-        } else {
+        if (!validarMail(correo)) {
             toast.error('Introduzca un correo valido', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -166,7 +236,7 @@ const CompCreateAlumno = () => {
                 </div>
                 <div className="contact-info-container">
                     <label>Información de Contacto</label>
-                    <input value={telefono} onChange={(e) => setTelefono(e.target.value)} type="text" placeholder="Telefono del Alumno"></input>
+                    <input value={telefono} onChange={(e) => setTelefono(e.target.value)} type="number" placeholder="Telefono del Alumno"></input>
                     <input value={domicilio} onChange={(e) => setDomicilio(e.target.value)} type="text" placeholder="Domicilio del Alumno"></input>
                     <input value={correo} onChange={(e) => setCorreo(e.target.value)} type="text" placeholder="Correo"></input>
                 </div>

@@ -2,15 +2,58 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
+import { soloLetras, verificarLongitud } from "../../tools/Methods";
 
 const URI = 'http://localhost:8000/carreras/'
 
 const CompCreateCarrera = () => {
     const [carreras, setCarreras] = useState('')
-    const navigate = useNavigate()
 
     const store = async (e) => {
         e.preventDefault()
+
+        if (!carreras) {
+            toast.error('Debes llenar todos los campos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
+        if (!soloLetras(carreras)) {
+            toast.error('La carrera solo debe contener letras', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
+        if (!verificarLongitud(carreras, 5, 30)) {
+            toast.error('La carrera debe tener de 5 a 30 caracteres', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
         await axios.post(URI, { nombre_carrera: carreras })
         .then(function(response)  {
             toast.success('Carerra agregada con exito', {

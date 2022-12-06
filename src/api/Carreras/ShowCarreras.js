@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const URI = 'http://localhost:8000/carreras/'
 
@@ -9,15 +11,60 @@ const CompShowCarreras = () => {
     useEffect( () => {
         getCarreras()
     }, [])
+    const navigate = useNavigate()
 
     const getCarreras = async () => {
         const res = await axios.get(URI)
         setCarreras(res.data)
     }
 
+    const confirmarEliminacion = (id) => {
+        if (!id) {
+            toast.error('Debes seleccionar una carrera', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Deseas eliminar la carrera ' + infoCarrera.nombre_carrera + '?',
+            text: "Esto no se podrá revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Borrar carrera',
+            confirmButtonColor: '#f53333',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteCarrera(id)
+            }
+        })
+    }
+
     const deleteCarrera = async (id) => {
-        await axios.delete(URI + id)
-        getCarreras()
+        await axios.delete(URI + id).then(function (response) {
+            toast.success('Carrera eliminada con exito', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setInfoCarrera('')
+            setInputCarrera('')
+            getCarreras()
+        })
     }
 
     const [infoCarrera, setInfoCarrera] = useState([])
@@ -26,6 +73,23 @@ const CompShowCarreras = () => {
     const onRowClick = carrera => {
         setInfoCarrera(carrera)
         setInputCarrera(carrera.nombre_carrera)
+    }
+
+    const editarCarrera = () => {
+        if (infoCarrera.id_carrera) {
+            navigate('/admin/otros/editarCarrera/' + infoCarrera.id_carrera)
+        } else {
+            toast.error('Debes seleccionar una carrera', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     }
 
     return (
@@ -56,8 +120,8 @@ const CompShowCarreras = () => {
                         <input value={inputCarrera} onChange={(e) => setInputCarrera(e)} type="text" placeholder="Carrera"></input>
                     </div>
                     <div className="button-controller-container">
-                        <input onClick={ () => { deleteCarrera(infoCarrera.id_carrera) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
-                        <Link to={"/admin/otros/editarCarrera/" + infoCarrera.id_carrera}><input type="button" value="Editar" className="input-button edit-btn"></input></Link>
+                        <input onClick={ () => { confirmarEliminacion(infoCarrera.id_carrera) } } type="button" value="Eliminar" className="input-button delete-btn"></input>
+                        <input onClick={ () => editarCarrera() } type="button" value="Editar" className="input-button edit-btn"></input>
                         <Link to={"/admin/otros/agregarCarrera"}><input type="button" value="Agregar" className="input-button add-btn"></input></Link>
                     </div>
                 </form>

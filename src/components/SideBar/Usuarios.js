@@ -4,6 +4,7 @@ import { Link, NavLink, Route, Routes } from "react-router-dom";
 import CompCreateAlumno from "../../api/Alumnos/CreateAlumnos";
 import CompEditAlumno from "../../api/Alumnos/EditAlumnos";
 import CompShowAlumnos from "../../api/Alumnos/ShowAlumnos";
+import CompCreateDocente from "../../api/Docentes/CreateDocentes";
 import CompShowDocentes from "../../api/Docentes/ShowDocentes";
 
 const CompUsuarios = () => {
@@ -21,6 +22,7 @@ const CompUsuarios = () => {
                     <Route path="/agregarAlumno" element={<CompCreateAlumno />}/>
                     <Route path="/editarAlumno/:num_control" element={<CompEditAlumno />}/>
                     <Route path="/docentes" element={<CompShowDocentes/>} />
+                    <Route path="/agregarDocente" element={<CompCreateDocente />}/>
                 </Routes>
             
             </div>
