@@ -161,7 +161,7 @@ const CompCreatePersonal = () => {
                 </div>
                 <div className="contact-info-container">
                     <label>Información de Contacto</label>
-                    <input value={telefono} onChange={ (e) => setTelefono(e.target.value)} type="text" placeholder="Telefono del Personal"></input>
+                    <input value={telefono} onChange={ (e) => setTelefono(e.target.value)} type="number" placeholder="Telefono del Personal"></input>
                     <input value={domicilio} onChange={ (e) => setDomicilio(e.target.value)} type="text" placeholder="Domicilio del Personal"></input>
                     <input value={correo} onChange={ (e) => setCorreo(e.target.value)} type="text" placeholder="Correo"></input>
                 </div>

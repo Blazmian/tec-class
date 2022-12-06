@@ -21,7 +21,7 @@ const Authentication = () => {
             const res = await axios.post(URI, { token: authInformation }).then(function (response) {
                 setUser(response.data.usuario)
                 setId(response.data.id_personal)
-                navigate('/admin')
+                navigate('/admin/usuarios/alumnos')
             }).catch(function (error) {
                 toast.error('No se pudo autenticar', {
                     position: "bottom-right",

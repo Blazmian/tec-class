@@ -25,7 +25,7 @@ export default class Administrador extends Component {
                         <ul>
                             <li><NavLink to={"/admin/usuarios/alumnos"} className={({ isActive }) => isActive ? 'active' : ""}>Usuarios</NavLink></li>
                             <li><NavLink to={"/admin/personalescolar/personalescolar"}>Personal Escolar</NavLink></li>
-                            <li><NavLink to={"/admin/informacion_escolar/grupos"}>Informacion Escolar</NavLink></li>
+                            
                             <li><NavLink to={"/admin/otros/materias"}>Otros</NavLink></li>
                         </ul>
                     </div>
@@ -33,7 +33,7 @@ export default class Administrador extends Component {
                         <Routes>
                             <Route path="/usuarios/*" element={ <CompUsuarios/> } />
                             <Route path="/personalescolar/*" element={ <CompPersonalEscolar/> } />
-                            <Route path="/informacion_escolar/*" element={ <CompInfoEscolar/> } />
+                            
                             <Route path="/otros/*" element={ <CompOtros/> } />
                         </Routes>
                     </div>
@@ -46,3 +46,6 @@ export default class Administrador extends Component {
         )
     }
 }
+
+//<li><NavLink to={"/admin/informacion_escolar/grupos"}>Informacion Escolar</NavLink></li>
+/*<Route path="/informacion_escolar/*" element={ <CompInfoEscolar/> } />*/
