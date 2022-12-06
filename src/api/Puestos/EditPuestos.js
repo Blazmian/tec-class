@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import { toast } from "react-toastify";
+import { soloLetras, verificarLongitud } from "../../tools/Methods";
 
 const URI = 'http://localhost:8000/puestos/'
 
@@ -15,6 +16,34 @@ const CompEditPuestos = () => {
 
         if (!puestos) {
             toast.error('Debes llenar todos los campos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
+        if (!soloLetras(puestos)) {
+            toast.error('El puesto solo debe contener letras', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+
+        if (!verificarLongitud(puestos, 5, 30)) {
+            toast.error('El puesto debe tener de 5 a 50 caracteres', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,

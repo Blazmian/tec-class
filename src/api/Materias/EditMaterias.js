@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { toast } from "react-toastify";
+import { verificarLongitud } from "../../tools/Methods";
 
 const URI = 'http://localhost:8000/materias/'
 
@@ -25,6 +26,20 @@ const CompEditMateria = () => {
                 theme: "light",
             });
             return
+        }
+
+        if (!verificarLongitud(materias, 5, 50)) {
+            toast.error('La materia debe ser mayor de 5 y menor a 50 caracteres', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
         }
 
         await axios.put(URI + id, { nombre_asignatura: materias }).then(function(response)  {

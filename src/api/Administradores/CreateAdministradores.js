@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
+import { verificarLongitud } from "../../tools/Methods";
 
 const URI = 'http://localhost:8000/administradores/'
 const URIP = 'http://localhost:8000/personalNotAdmin/'
@@ -12,7 +13,6 @@ const CompCreateAdministrador = () => {
     const [id_personal, setIdPersonal] = useState('')
     const [nombres, setNombres] = useState('')
     const [personal, setPersonal] = useState([])
-    const navigate = useNavigate()
 
     useEffect(() => {
         getPersonalNotAdmin()
@@ -28,6 +28,20 @@ const CompCreateAdministrador = () => {
 
         if (usuario.length * pass.length === 0) {
             toast.error('Debes llenar todos los campos', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        if (!verificarLongitud(usuario, 4, 10)) {
+            toast.error('El usuario debe ser entre 4 y 10 caracteres', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
