@@ -3,6 +3,7 @@ import CompShowClases from "../../api/Clases/ShowClases";
 import CompShowGrupos from "../../api/Grupos/ShowGrupos";
 import CompEditGrupos from "../../api/Grupos/EditGrupos";
 import CompCreateGrupos from "../../api/Grupos/CreateGrupos";
+import CompCreateClase from "../../api/Clases/CreateClases";
 
 
 const CompInfoEscolar = () => {
@@ -18,7 +19,7 @@ const CompInfoEscolar = () => {
                 <Routes>
                     <Route path="/grupos" element={<CompShowGrupos/>} />
                     <Route path="/clases" element={<CompShowClases/>} />
-                    <Route path="/editarGrupos/:num_control" element={<CompEditGrupos/>} />
+                    <Route path="/agregarClases/" element={<CompCreateClase/>} />
                     <Route path="/agregarGrupos" element={<CompCreateGrupos/>} />
                 </Routes>
             

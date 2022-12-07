@@ -350,7 +350,12 @@ th {
 
 .main-container .create-container form .contact-info-container {
     width: 50%;
+    height: 100%;
     background-color: transparent;
+}
+
+.main-container .create-container form .contact-info-container .dropdown {
+    height: 15%;
 }
 
 .main-container .create-container form .info-container {
