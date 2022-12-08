@@ -1,0 +1,58 @@
+* {
+    overflow: hidden;
+}
+
+.main-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+}
+
+.main-content {
+    height: 85%;
+    background-color: #f2f2f2;
+    width: 100%;
+    display: flex;
+}
+
+.main-content-structure{
+    /*height: 100%;*/
+    width: 100%;
+    display: block;
+}
+
+/* DISEÑO PARA HEADER */
+.admin-header {
+    height: 10vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    padding: 1%;
+}
+
+.admin-header img {
+    height: 100%;
+}
+
+.admin-header button {
+    height: 50%;
+    position: relative;
+    top: 25%;
+    margin-left: auto;
+    margin-right: 3%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF5A5A;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.admin-header button:hover {
+    box-shadow: 0 0 40px 40px #FF5A5A inset;
+    color: #fff;
+    outline: 0;
+}

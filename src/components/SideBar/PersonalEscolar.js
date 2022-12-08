@@ -1,9 +1,9 @@
 import { NavLink, Route, Routes } from "react-router-dom";
-import CompShowAdministradores from "../../api/Administradores/ShowAdministradores";
+import CompShowAdministradores from "../../api/Administrador/Administradores/ShowAdministradores";
 import CompShowPersonal from "../../api/PersonalEscolar/ShowPersonal";
 import CompCreatePersonal from "../../api/PersonalEscolar/CreatePersonal";
 import CompEditPersonal from "../../api/PersonalEscolar/EditPersonal";
-import CompCreateAdministrador from "../../api/Administradores/CreateAdministradores";
+import CompCreateAdministrador from "../../api/Administrador/Administradores/CreateAdministradores";
 
 const CompPersonalEscolar = () => {
     return (

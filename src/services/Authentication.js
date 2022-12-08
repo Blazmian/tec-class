@@ -1,43 +1,56 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
-const URI = 'http://localhost:8000/auth/'
-var authInformation = null;
+const URL = 'http://localhost:8000/auth'
 
 const Authentication = () => {
-    const [user, setUser] = useState('')
-    const [id_user, setId] = useState('')
-    const navigate = useNavigate()
+    const [authInformation, setAuthInformation] = useState('')
+    const [admin, setAdmin] = useState([])
+    const [docente, setDocente] = useState([])
+    const navigate = useNavigate('')
+
     useEffect(() => {
-        getAuthentication()
+        if(admin !== null) {
+            navigate('/admin/usuarios/alumnos')
+            return
+        }
+        if(docente !== null) {
+            navigate('/docente')
+            return
+        }
+        getAuthInformation()
     }, [])
 
-    authInformation = localStorage.getItem('token')
-
-    const getAuthentication = async () => {
-        if (authInformation != null) {
-            const res = await axios.post(URI, { token: authInformation }).then(function (response) {
-                setUser(response.data.usuario)
-                setId(response.data.id_personal)
-                navigate('/admin/usuarios/alumnos')
-            }).catch(function (error) {
-                toast.error('No se pudo autenticar', {
-                    position: "bottom-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                navigate('/login')
-            })
+    const getAuthInformation = () => {
+        const token = localStorage.getItem('token')
+        if (token != null) {
+            setAuthInformation(token)
+            tryAuth()
         } else {
             navigate('/login')
         }
+    }
+
+    const tryAuth = async () => {
+        console.log('admin')
+        const admin = await metodoAuth(URL + 'Admin/')
+        console.log(admin.data)
+        if (admin.status(200)) {
+            setAdmin(admin.data)
+        }
+
+        console.log('docente')
+        const docente = await metodoAuth(URL + 'Docente/')
+        console.log(docente.data)
+        if (docente.status(200)) {
+            setDocente(docente.admin)
+        }
+        navigate('/login')
+    }
+
+    const metodoAuth = async (url) => {
+        return await axios.post(url, { token: authInformation })
     }
 }
 

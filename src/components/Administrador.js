@@ -38,10 +38,6 @@ export default class Administrador extends Component {
                         </Routes>
                     </div>
                 </div>
-                <div className="footer">
-                    <p>INSTITUTO TECNOLÓGICO DE HERMOSILLO - 2022</p>
-                </div>
-
             </div>
         )
     }

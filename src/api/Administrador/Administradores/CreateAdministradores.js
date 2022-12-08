@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
-import { verificarLongitud } from "../../tools/Methods";
+import { verificarLongitud } from "../../../tools/Methods";
 
 const URI = 'http://localhost:8000/administradores/'
 const URIP = 'http://localhost:8000/personalNotAdmin/'

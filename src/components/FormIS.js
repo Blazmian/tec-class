@@ -6,7 +6,7 @@ import '../styles/FormIS.css';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const URI = 'http://localhost:8000/login/'
+const URI = 'http://localhost:8000/login'
 
 function FormIS() {
     const [user, setUser] = useState('')
@@ -16,20 +16,10 @@ function FormIS() {
     const login = async (e) => {
         e.preventDefault()
         if (user.length > 0 && pass.length > 0) {
-            const res = await axios.post(URI, { usuario: user, pass: pass }).then(function(response) {
-                toast.success('Sesión iniciada con exito', {
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                localStorage.setItem('token', response.data.token)     
-                navigate('/')
-            }).catch(function (error) {
-                if (error.toJSON().status == 400 || error.toJSON().status == 404) {
-                    toast.error('Usuario o contraseña incorrectos', {
+            const resAdmin = await tratarLogin(URI + 'Admin/')
+            if (resAdmin !== 404) {
+                if (resAdmin.data) {
+                    toast.success('Sesión iniciada con exito', {
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -37,10 +27,38 @@ function FormIS() {
                         progress: undefined,
                         theme: "light",
                     });
+                    localStorage.setItem('token', resAdmin.data.token)
+                    navigate('/')
+                    return
                 }
-            }) 
+            }
+
+            const resDocente = await tratarLogin(URI + 'Docente/')
+            if (resDocente !== 404) {
+                if (resDocente.data) {
+                    toast.success('Sesión iniciada con exito', {
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    localStorage.setItem('token', resDocente.data.token)
+                    navigate('/')
+                    return
+                }
+            }
+
+            toast.error('Usuario o contraseña incorrectos', {
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         } else {
-            console.log('Error: debes introducir los datos')
             toast.error('Error: Debes introducir los datos', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -52,6 +70,35 @@ function FormIS() {
                 theme: "light",
             });
         }
+    }
+
+    const tratarLogin = async (url) => {
+        return await axios.post(url, { usuario: user, pass: pass }).catch(function (error) {
+            console.clear()
+            return 404
+        })/*.then(function(response) {
+            toast.success('Sesión iniciada con exito', {
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            localStorage.setItem('token', response.data.token)     
+            navigate('/')
+        }).catch(function (error) {
+            if (error.toJSON().status == 400 || error.toJSON().status == 404) {
+                toast.error('Usuario o contraseña incorrectos', {
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        })*/
     }
 
     return (
