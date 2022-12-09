@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import { toast } from "react-toastify";
-import { soloLetras, verificarLongitud } from "../../tools/Methods";
+import { soloLetras, verificarLongitud } from "../../../tools/Methods";
 
 const URI = 'http://localhost:8000/puestos/'
 

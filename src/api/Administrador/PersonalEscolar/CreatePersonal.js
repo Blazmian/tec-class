@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
-import { soloLetras, validarMail, verificarLongitud } from "../../tools/Methods";
+import { soloLetras, validarMail, verificarLongitud } from "../../../tools/Methods";
 
 const URI = 'http://localhost:8000/personal_escolar/'
 

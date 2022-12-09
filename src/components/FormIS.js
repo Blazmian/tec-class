@@ -28,6 +28,7 @@ function FormIS() {
                         theme: "light",
                     });
                     localStorage.setItem('token', resAdmin.data.token)
+                    localStorage.setItem('modo', 'admin')
                     navigate('/')
                     return
                 }
@@ -45,6 +46,7 @@ function FormIS() {
                         theme: "light",
                     });
                     localStorage.setItem('token', resDocente.data.token)
+                    localStorage.setItem('modo', 'docente')
                     navigate('/')
                     return
                 }

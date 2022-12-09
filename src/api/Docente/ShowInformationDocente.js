@@ -16,13 +16,14 @@ const CompInfoDocente = () => {
 
     const getClases = async () => {
         const res = await axios.get(URL + '61231584')
+        console.log(res.data)
         setClases(res.data)
-        setNumControl(clases[0].docente.no_control_docente)
-        setNombre(clases[0].docente.personal_escolar.nombre + " " +
-            clases[0].docente.personal_escolar.primer_ape + " " +
-            clases[0].docente.personal_escolar.segundo_ape)
-        setNumMaterias(clases.length)
-        setCorreo(clases[0].docente.personal_escolar.correo)
+        setNumControl(res.data[0].docente.no_control_docente)
+        setNombre(res.data[0].docente.personal_escolar.nombre + " " +
+            res.data[0].docente.personal_escolar.primer_ape + " " +
+            res.data[0].docente.personal_escolar.segundo_ape)
+        setNumMaterias(res.data.length)
+        setCorreo(res.data[0].docente.personal_escolar.correo)
     }
 
     return (
