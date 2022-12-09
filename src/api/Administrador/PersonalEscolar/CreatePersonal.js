@@ -1,28 +1,25 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
-import { soloLetras, validarMail, verificarLongitud } from "../../tools/Methods";
+import { soloLetras, validarMail, verificarLongitud } from "../../../tools/Methods";
 
 const URI = 'http://localhost:8000/personal_escolar/'
 
-const CompEditPersonal = () => {
-
-    const {id} = useParams()
-    const [nombre, setNombres] = useState('')
+const CompCreatePersonal = () => {
+    const [nombres, setNombres] = useState('')
     const [primer_ape, setPrimerApellido] = useState('')
     const [segundo_ape, setSegundoApellido] = useState('')
-    const [fecha_nacimiento, setFechaNac] = useState('')
-    const [telefono, setTelefono] = useState('')
-    const [domicilio, setDomicilio] = useState('')
     const [correo, setCorreo] = useState('')
+    const [telefono, setTelefono] = useState('')
     const [genero, setGenero] = useState('Masculino')
-    const navigate = useNavigate()
+    const [domicilio, setDomicilio] = useState('')
+    const [fecha_nacimiento, setFechaNac] = useState('')
 
-    const update = async (e) => {
+    const store = async (e) => {
         e.preventDefault()
 
-        if (!(nombre.length * primer_ape.length * segundo_ape.length *
+        if (!(nombres.length * primer_ape.length * segundo_ape.length *
             telefono.length * domicilio.length * correo.length > 0)) {
             toast.error('Debes llenar todos los campos', {
                 position: "bottom-right",
@@ -37,7 +34,7 @@ const CompEditPersonal = () => {
             return;
         }
 
-        if (!soloLetras(nombre)) {
+        if (!soloLetras(nombres)) {
             toast.error('El nombre solo admite letras', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -51,7 +48,7 @@ const CompEditPersonal = () => {
             return;
         }
 
-        if (!verificarLongitud(nombre, 2, 30)) {
+        if (!verificarLongitud(nombres, 2, 30)) {
             toast.error('El nombre debe ser mayor de 2 y menor a 30 caracteres', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -155,18 +152,18 @@ const CompEditPersonal = () => {
             });
             return;
         }
-        
-        await axios.put(URI + id, {
-            nombre: nombre, 
+
+        await axios.post(URI, { 
+            nombre: nombres, 
             primer_ape: primer_ape, 
             segundo_ape: segundo_ape, 
             correo: correo, 
             telefono: telefono, 
-            genero: genero,
+            genero: genero, 
             domicilio: domicilio, 
             fecha_nacimiento: fecha_nacimiento
-        }).then(function (response) {
-            toast.success('Personal editado con exito', {
+        }).then(function(response)  {
+            toast.success('Personal agregado con exito', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -176,8 +173,16 @@ const CompEditPersonal = () => {
                 progress: undefined,
                 theme: "light",
             });
+            setNombres('')
+            setPrimerApellido('')
+            setSegundoApellido('')
+            setFechaNac('')
+            setTelefono('')
+            setDomicilio('')
+            setCorreo('')
+            setGenero('Masculino')
         }).catch(function (error) {
-            toast.error('No se pudo editar el personal', {
+            toast.error('No se pudo agregar al personal', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -187,23 +192,7 @@ const CompEditPersonal = () => {
                 progress: undefined,
                 theme: "light",
             });
-        })
-    }
-
-    useEffect( () => {
-        getPersonalById()
-    }, [])
-
-    const getPersonalById = async () => {
-        const res = await axios.get(URI + id)
-        setNombres(res.data.nombre)
-        setPrimerApellido(res.data.primer_ape)
-        setSegundoApellido(res.data.segundo_ape)
-        setFechaNac(res.data.fecha_nacimiento)
-        setTelefono(res.data.telefono)
-        setDomicilio(res.data.domicilio)
-        setCorreo(res.data.correo)
-        setGenero(res.data.genero)
+        }) 
     }
 
     const setGender = e => {
@@ -212,11 +201,11 @@ const CompEditPersonal = () => {
 
     return (
         <div className="create-container">
-            <h1>Editar Personal</h1>
-            <form onSubmit={ update }>
+            <h1>Agregar Personal</h1>
+            <form onSubmit={ store }>
                 <div className="personal-info-container">
                     <label>Información Personal</label>
-                    <input value={nombre} onChange={ (e) => setNombres(e.target.value)} type="text" placeholder="Nombre"></input>
+                    <input value={nombres} onChange={ (e) => setNombres(e.target.value)} type="text" placeholder="Nombres"></input>
                     <input value={primer_ape} onChange={ (e) => setPrimerApellido(e.target.value)} type="text" placeholder="Primer Apellido"></input>
                     <input value={segundo_ape} onChange={ (e) => setSegundoApellido(e.target.value)} type="text" placeholder="Segundo Apellido"></input>
                     <input value={fecha_nacimiento} onChange={ (e) => setFechaNac(e.target.value)} type="date"></input>
@@ -242,17 +231,17 @@ const CompEditPersonal = () => {
                 </div>
                 <div className="contact-info-container">
                     <label>Información de Contacto</label>
-                    <input value={telefono} onChange={ (e) => setTelefono(e.target.value)} type="text" placeholder="Telefono del Personal"></input>
+                    <input value={telefono} onChange={ (e) => setTelefono(e.target.value)} type="number" placeholder="Telefono del Personal"></input>
                     <input value={domicilio} onChange={ (e) => setDomicilio(e.target.value)} type="text" placeholder="Domicilio del Personal"></input>
                     <input value={correo} onChange={ (e) => setCorreo(e.target.value)} type="text" placeholder="Correo"></input>
                 </div>
                 <div className="button-controller">
-                <Link to={"/admin/personalescolar/personalescolar"}><button className="return-btn">⇽ Volver</button></Link>
-                    <button className="create-btn" type="submit">Editar</button>
+                    <Link to={"/admin/personalescolar/personalescolar"}><button className="return-btn">⇽ Volver</button></Link>
+                    <button className="create-btn" type="submit">Agregar</button>
                 </div>
             </form>
         </div>
     )
 }
 
-export default CompEditPersonal
+export default CompCreatePersonal

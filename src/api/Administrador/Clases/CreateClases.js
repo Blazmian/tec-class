@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 //import 'bootstrap/dist/css/bootstrap.min.css'
 
 const URI = 'http://localhost:8000/clases/'
@@ -56,7 +56,7 @@ const CompCreateClase = () => {
         }
     }
 
-    const onRowClickMateria = materia=> {
+    const onRowClickMateria = materia => {
         setIdMateria(materia.id_asignatura)
         setMateria(materia.nombre_asignatura)
     }
@@ -101,41 +101,41 @@ const CompCreateClase = () => {
             });
             return
         }
-        
-        await axios.post(URI, 
-            { 
-                no_control_docente : id_docente, 
-                id_grupo: id_grupo, 
-                id_asignatura: id_materia, 
-                enlace: link 
+
+        await axios.post(URI,
+            {
+                no_control_docente: id_docente,
+                id_grupo: id_grupo,
+                id_asignatura: id_materia,
+                enlace: link
             })
-        .then(function(response)  {
-            toast.success('Clase agregada con exito', {
-                position: "bottom-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            setLink('')
-            setDocente('')
-            setGrupo('')
-            setMateria('')
-        }).catch(function (error) {
-            toast.error('No se pudo agregar la clase', {
-                position: "bottom-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        })
+            .then(function (response) {
+                toast.success('Clase agregada con exito', {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                setLink('')
+                setDocente('')
+                setGrupo('')
+                setMateria('')
+            }).catch(function (error) {
+                toast.error('No se pudo agregar la clase', {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
     }
 
     return (
@@ -153,47 +153,26 @@ const CompCreateClase = () => {
                 </div>
                 <div className="contact-info-container">
                     <label>Materias</label>
-                    <Dropdown isOpen={dropMaterias} toggle={abrirCerrarDropdown }>
-                        <DropdownToggle caret>
-                            Materias
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            {materias.map((materia) => (
-                                <DropdownItem key={materia.id_asignatura} onClick={() => { onRowClickMateria(materia) }}>{materia.nombre_asignatura}</DropdownItem>
-                            ))
-                            }
-                        </DropdownMenu>
-                    </Dropdown>
+                    {materias.map((materia) => (
+                        <Button key={materia.id_asignatura} onClick={() => { onRowClickMateria(materia) }}>{materia.nombre_asignatura}</Button>
+                    ))
+                    }
                     <label>Grupos</label>
-                    <Dropdown isOpen={dropGrupos} toggle={() => abrirCerrarDropdown('grupos')}>
-                        <DropdownToggle caret>
-                            Grupos
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            {grupos.map((grupo) => (
-                                <DropdownItem key={grupo.id_grupo} onClick={() => { onRowClickGrupo(grupo) }}>{grupo.nombre_grupo}</DropdownItem>
-                            ))
-                            }
-                        </DropdownMenu>
-                    </Dropdown>
+                    {grupos.map((grupo) => (
+                        <Button key={grupo.id_grupo} onClick={() => { onRowClickGrupo(grupo) }}>{grupo.nombre_grupo}</Button>
+                    ))
+                    }
                     <label>Docentes</label>
-                    <Dropdown isOpen={dropDocentes} toggle={() => abrirCerrarDropdown('docentes')}>
-                        <DropdownToggle caret>
-                            Docentes
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            {docentes.map((docente) => (
-                                <DropdownItem key={docente.no_control_docente} onClick={() => { onRowClickDocente(docente) }}>
-                                    {
-                                        docente.personal_escolar.nombre + " " +
-                                        docente.personal_escolar.primer_ape + " " +
-                                        docente.personal_escolar.segundo_ape
-                                    }
-                                </DropdownItem>
-                            ))
+                    {docentes.map((docente) => (
+                        <Button key={docente.no_control_docente} onClick={() => { onRowClickDocente(docente) }}>
+                            {
+                                docente.personal_escolar.nombre + " " +
+                                docente.personal_escolar.primer_ape + " " +
+                                docente.personal_escolar.segundo_ape
                             }
-                        </DropdownMenu>
-                    </Dropdown>
+                        </Button>
+                    ))
+                    }
                 </div>
                 <div className="button-controller">
                     <Link to={"/admin/informacion_escolar/clases"}><button className="return-btn">⇽ Volver</button></Link>
@@ -205,3 +184,15 @@ const CompCreateClase = () => {
 }
 
 export default CompCreateClase
+
+/*<Dropdown isOpen={dropMaterias} toggle={abrirCerrarDropdown }>
+                        <DropdownToggle caret>
+                            Materias
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {materias.map((materia) => (
+                                <DropdownItem key={materia.id_asignatura} onClick={() => { onRowClickMateria(materia) }}>{materia.nombre_asignatura}</DropdownItem>
+                            ))
+                            }
+                        </DropdownMenu>
+                    </Dropdown>*/

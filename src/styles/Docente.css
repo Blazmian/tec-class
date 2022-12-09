@@ -1,0 +1,143 @@
+.docente-toolbar {
+    width: 100%;
+    height: auto;
+    background-color: #1D3A69;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+}
+
+.docente-toolbar ul {
+    padding: 0px;
+    background: #1D3A69;
+    display: flex;
+    justify-content: space-around;
+}
+
+.docente-toolbar ul li {
+    background: #1D3A69;
+    color: white;
+}
+
+.docente-toolbar ul li a {
+    background: #1D3A69;
+    color: white;
+    text-decoration: none;
+}
+
+.docente-toolbar ul li a:hover {
+    text-decoration: underline;
+}
+
+.docente-toolbar ul li .active {
+    text-decoration: underline;
+}
+
+.docente-main-content {
+    height: 80%;
+}
+
+.main-content-structure-docente {
+    width: 100%;
+    height: 80%;
+    border-radius: 30px;
+}
+
+.main-container-docente {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 1%;
+}
+
+.clases-container {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0px auto;
+}
+
+.clases-container tbody {
+    text-align: center;
+}
+
+.clases-container tbody tr {
+    height: 10px;
+}
+
+.clases-container thead {
+    position: sticky;
+    top: 0;
+    font-size: 14px;
+}
+
+.clases-container tbody {
+    overflow: scroll;
+    background-color: transparent;
+    overflow-x: auto;
+    font-size: 95%;
+}
+
+.clases-container tbody tr {
+    height: 30px;
+}
+
+.clases-container table td,
+th {
+    padding: 5px;
+    text-align: center;
+    background-color: white;
+}
+
+.clases-container button {
+    background-color: #1D3A69;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    height: 30px;
+}
+
+.info-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.info-docente {
+    height: 70%;
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline;
+}
+
+.info-docente span {
+    display: flex;
+    position: relative;
+    width: 90%;
+    font-size: 18px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.info-docente .s-gray {
+    border-radius: 30px;
+    background-color: #E9E9E9;
+}
+
+.info-docente .doc-value {
+    position: relative;
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.info-container span .lb-bold {
+    font-weight: bold;
+}

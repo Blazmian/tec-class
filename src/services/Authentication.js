@@ -1,43 +1,68 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
-const URI = 'http://localhost:8000/auth/'
-var authInformation = null;
+const URL = 'http://localhost:8000/auth'
 
 const Authentication = () => {
-    const [user, setUser] = useState('')
-    const [id_user, setId] = useState('')
-    const navigate = useNavigate()
+    var authInformation = ''
+    const [admin, setAdmin] = useState([])
+    const [docente, setDocente] = useState([])
+    var modo = useRef('')
+    const navigate = useNavigate('')
+
     useEffect(() => {
-        getAuthentication()
+        if (admin.length !== 0) {
+            navigate('/admin/usuarios/alumnos')
+            return
+        }
+        if (docente.length !== 0) {
+            navigate('/docente/misClases')
+            return
+        }
+        getAuthInformation()
     }, [])
 
-    authInformation = localStorage.getItem('token')
-
-    const getAuthentication = async () => {
-        if (authInformation != null) {
-            const res = await axios.post(URI, { token: authInformation }).then(function (response) {
-                setUser(response.data.usuario)
-                setId(response.data.id_personal)
-                navigate('/admin/usuarios/alumnos')
-            }).catch(function (error) {
-                toast.error('No se pudo autenticar', {
-                    position: "bottom-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                navigate('/login')
-            })
+    const getAuthInformation = () => {
+        const token = localStorage.getItem('token')
+        console.log(localStorage.getItem('modo'))
+        modo = localStorage.getItem('modo')
+        if (token != null) {
+            authInformation = token
+            tryAuth()
         } else {
             navigate('/login')
         }
+    }
+
+    const tryAuth = async () => {
+        if (modo === 'admin') {
+            const admin = await metodoAuth(URL + 'Admin/')
+            console.log('entre')
+            if (admin) {
+                setAdmin(admin.data)
+                navigate('/admin/usuarios/alumnos')
+                return
+            }
+        } else if (modo === 'docente') {
+            const docente = await metodoAuth(URL + 'Docente/')
+            if (docente) {
+                console.log('autentico docente')
+                navigate('/docente/misClases')
+                setDocente(docente.admin)
+            }
+        } else {
+            navigate('/login')
+        }
+    }
+
+    const metodoAuth = async (url) => {
+        const res = await axios.post(url, { token: authInformation })
+        if (res.status === 205) {
+            console.log('entro falso')
+            return false
+        }
+        return true
     }
 }
 

@@ -1,10 +1,8 @@
 import { NavLink, Route, Routes } from "react-router-dom";
-import CompShowClases from "../../api/Clases/ShowClases";
-import CompShowGrupos from "../../api/Grupos/ShowGrupos";
-import CompEditGrupos from "../../api/Grupos/EditGrupos";
-import CompCreateGrupos from "../../api/Grupos/CreateGrupos";
-import CompCreateClase from "../../api/Clases/CreateClases";
-
+import CompShowClases from "../../api/Administrador/Clases/ShowClases";
+import CompShowGrupos from "../../api/Administrador/Grupos/ShowGrupos";
+import CompCreateGrupos from "../../api/Administrador/Grupos/CreateGrupos";
+import CompCreateClase from "../../api/Administrador/Clases/CreateClases";
 
 const CompInfoEscolar = () => {
     return (

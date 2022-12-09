@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
-import { verificarLongitud } from "../../tools/Methods";
+import { verificarLongitud } from "../../../tools/Methods";
 
 const URI = 'http://localhost:8000/grupos/'
 const URIP = 'http://localhost:8000/carreras/'

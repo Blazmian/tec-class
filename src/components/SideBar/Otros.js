@@ -1,13 +1,13 @@
 import { Link, NavLink, Route, Routes } from "react-router-dom";
-import CompEditPuestos from "../../api/Puestos/EditPuestos";
-import CompShowPuestos from "../../api/Puestos/ShowPuestos";
-import CompCreatePuestos from "../../api/Puestos/CreatePuestos";
-import CompShowCarreras from "../../api/Carreras/ShowCarreras";
-import CompCreateCarrera from "../../api/Carreras/CreateCarreras";
-import CompEditCarrera from "../../api/Carreras/EditCarreras";
-import CompShowMaterias from "../../api/Materias/ShowMaterias";
-import CompCreateMateria from "../../api/Materias/CreateMaterias";
-import CompEditMateria from "../../api/Materias/EditMaterias";
+import CompEditPuestos from "../../api/Administrador/Puestos/EditPuestos";
+import CompShowPuestos from "../../api/Administrador/Puestos/ShowPuestos";
+import CompCreatePuestos from "../../api/Administrador/Puestos/CreatePuestos";
+import CompShowCarreras from "../../api/Administrador/Carreras/ShowCarreras";
+import CompCreateCarrera from "../../api/Administrador/Carreras/CreateCarreras";
+import CompEditCarrera from "../../api/Administrador/Carreras/EditCarreras";
+import CompShowMaterias from "../../api/Administrador/Materias/ShowMaterias";
+import CompCreateMateria from "../../api/Administrador/Materias/CreateMaterias";
+import CompEditMateria from "../../api/Administrador/Materias/EditMaterias";
 
 const CompOtros = () => {
     return (

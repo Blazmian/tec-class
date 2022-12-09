@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, NavLink, Route, Routes } from "react-router-dom";
-import CompCreateAlumno from "../../api/Alumnos/CreateAlumnos";
-import CompEditAlumno from "../../api/Alumnos/EditAlumnos";
-import CompShowAlumnos from "../../api/Alumnos/ShowAlumnos";
-import CompCreateDocente from "../../api/Docentes/CreateDocentes";
-import CompShowDocentes from "../../api/Docentes/ShowDocentes";
+import CompCreateAlumno from "../../api/Administrador/Alumnos/CreateAlumnos";
+import CompEditAlumno from "../../api/Administrador/Alumnos/EditAlumnos";
+import CompShowAlumnos from "../../api/Administrador/Alumnos/ShowAlumnos";
+import CompCreateDocente from "../../api/Administrador/Docentes/CreateDocentes";
+import CompShowDocentes from "../../api/Administrador/Docentes/ShowDocentes";
 
 const CompUsuarios = () => {
     return (

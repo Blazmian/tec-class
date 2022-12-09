@@ -2,17 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
-import { soloLetras, verificarLongitud } from "../../tools/Methods";
+import { verificarLongitud } from "../../../tools/Methods";
 
-const URI = 'http://localhost:8000/carreras/'
+const URI = 'http://localhost:8000/materias/'
 
-const CompCreateCarrera = () => {
-    const [carreras, setCarreras] = useState('')
+const CompCreateMateria = () => {
+    const [materias, setMaterias] = useState('')
 
     const store = async (e) => {
         e.preventDefault()
 
-        if (!carreras) {
+        if (!materias) {
             toast.error('Debes llenar todos los campos', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -26,8 +26,8 @@ const CompCreateCarrera = () => {
             return
         }
 
-        if (!soloLetras(carreras)) {
-            toast.error('La carrera solo debe contener letras', {
+        if (!verificarLongitud(materias, 5, 50)) {
+            toast.error('La materia debe ser mayor de 5 y menor a 50 caracteres', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -37,26 +37,12 @@ const CompCreateCarrera = () => {
                 progress: undefined,
                 theme: "light",
             });
-            return
+            return;
         }
 
-        if (!verificarLongitud(carreras, 5, 30)) {
-            toast.error('La carrera debe tener de 5 a 30 caracteres', {
-                position: "bottom-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            return
-        }
-
-        await axios.post(URI, { nombre_carrera: carreras })
+        await axios.post(URI, { nombre_asignatura: materias })
         .then(function(response)  {
-            toast.success('Carerra agregada con exito', {
+            toast.success('Materia agregada con exito', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -66,9 +52,9 @@ const CompCreateCarrera = () => {
                 progress: undefined,
                 theme: "light",
             });
-            setCarreras('')
+            setMaterias('')
         }).catch(function (error) {
-            toast.error('No se pudo agregar la carrera', {
+            toast.error('No se pudo agregar la materia', {
                 position: "bottom-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -78,18 +64,18 @@ const CompCreateCarrera = () => {
                 progress: undefined,
                 theme: "light",
             });
-        })
+        }) 
     }
 
     return (
         <div className="create-container">
-            <h1>Agregar Carrera</h1>
+            <h1>Agregar Materia</h1>
             <form onSubmit={ store }>
                 <div className="info-container">
-                    <input value={carreras} onChange={ (e) => setCarreras(e.target.value)} type="text" placeholder="Nombre de la Carrera"></input>
+                    <input value={materias} onChange={ (e) => setMaterias(e.target.value)} type="text" placeholder="Nombre de la Materia"></input>
                 </div>
                 <div className="button-controller">
-                    <Link to={"/admin/otros/carreras"}><button className="return-btn">⇽ Volver</button></Link>
+                    <Link to={"/admin/otros/materias"}><button className="return-btn">⇽ Volver</button></Link>
                     <button className="create-btn" type="submit">Agregar</button>
                 </div>
             </form>
@@ -97,4 +83,4 @@ const CompCreateCarrera = () => {
     )
 }
 
-export default CompCreateCarrera
+export default CompCreateMateria
